@@ -69,5 +69,5 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/kongzhexin/kongzhexin.github.io.git
+  repository: git@github.com:kongzhexin/kongzhexin.github.io.git
   branch: master
