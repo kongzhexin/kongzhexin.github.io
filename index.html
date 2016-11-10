@@ -96,15 +96,15 @@
 
 
 
-<meta name="description" content="jser">
+<meta name="description" content="a jser are trying to climb pit">
 <meta property="og:type" content="website">
 <meta property="og:title" content="seraph">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="seraph">
-<meta property="og:description" content="jser">
+<meta property="og:description" content="a jser are trying to climb pit">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="seraph">
-<meta name="twitter:description" content="jser">
+<meta name="twitter:description" content="a jser are trying to climb pit">
 
 
 
@@ -117,7 +117,7 @@
     motion: true,
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     }
   };
 </script>
@@ -131,7 +131,7 @@
   <title> seraph </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -188,7 +188,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            首页
           </a>
         </li>
       
@@ -198,7 +198,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            归档
           </a>
         </li>
       
@@ -208,17 +208,17 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-schedule">
-          <a href="/schedule" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Schedule
+            关于
           </a>
         </li>
       
@@ -261,8 +261,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/09/sort/" itemprop="url">
-                  sort
+                <a class="post-title-link" href="/2016/11/09/2016-11-10-sort-algorithm/" itemprop="url">
+                  Sort algorithm
                 </a>
               
             
@@ -274,7 +274,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-11-09T16:01:55+08:00" content="2016-11-09">
               2016-11-09
             </time>
@@ -290,12 +290,12 @@
 
           
           
-             <span id="/2016/11/09/sort/" class="leancloud_visitors" data-flag-title="sort">
+             <span id="/2016/11/09/2016-11-10-sort-algorithm/" class="leancloud_visitors" data-flag-title="Sort algorithm">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">visitors </span>
+               <span class="post-meta-item-text">阅读次数 </span>
                <span class="leancloud-visitors-count"></span>
               </span>
           
@@ -316,24 +316,23 @@
           
             <ol>
 <li><p>冒泡排序<br>所有元素循环一遍</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function bublesort(arr) &#123;</div><div class="line">    var len=arr.length;</div><div class="line">    var temp;</div><div class="line">    for(var i=0;ilen;i++)&#123;</div><div class="line">        for(var j=0;jlen-1-i;j++)&#123;</div><div class="line">            if(arr[j]arr[j+1])&#123;    </div><div class="line">                temp=arr[j];</div><div class="line">                arr[j]=arr[j+1];</div><div class="line">                arr[j+1]=temp;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function bublesort(arr) &#123;</div><div class="line">    var len=arr.length;</div><div class="line">    var temp;</div><div class="line">    for(var i=0;i&lt;len;i++)&#123;</div><div class="line">        for(var j=0;j&lt;len-1-i;j++)&#123;</div><div class="line">            if(arr[j]&lt;arr[j+1])&#123;    </div><div class="line">                temp=arr[j];</div><div class="line">                arr[j]=arr[j+1];</div><div class="line">                arr[j+1]=temp;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>插入排序：扑克牌 和冒泡很类似</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function insertSort(arr) &#123;</div><div class="line">    var len =arr.length;</div><div class="line">    var temp;</div><div class="line">    for(var i=1;ilen;i++)&#123;</div><div class="line">        while(arr[i]arr[i-1]&amp;&amp;i-1=0)&#123;</div><div class="line">            temp=arr[i];</div><div class="line">            arr[i]=arr[i-1];</div><div class="line">            arr[i-1]=temp;</div><div class="line">            i--;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function insertSort(arr) &#123;</div><div class="line">    var len =arr.length;</div><div class="line">    var temp;</div><div class="line">    for(var i=1;i&lt;len;i++)&#123;</div><div class="line">        while(arr[i]&lt;arr[i-1]&amp;&amp;i-1=0)&#123;</div><div class="line">            temp=arr[i];</div><div class="line">            arr[i]=arr[i-1];</div><div class="line">            arr[i-1]=temp;</div><div class="line">            i--;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>选择排序<br>每次选择最小的，默认第一个最小，比较保存最小索引 和第一个交换 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function selectSort(arr) &#123;</div><div class="line">    var len =arr.length;</div><div class="line">    var  minIndex;</div><div class="line">    var temp;</div><div class="line"></div><div class="line">    for(var i=0;ilen;i++)&#123;</div><div class="line">        minIndex=i;</div><div class="line">        for(var j=i+1;jlen;j++)&#123;</div><div class="line">            if(arr[minIndex]arr[j])&#123;</div><div class="line">                minIndex=j;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        temp =arr[i];</div><div class="line">        arr[i]= arr[minIndex];</div><div class="line">        arr[minIndex]=temp;</div><div class="line">    &#125;</div><div class="line">    return arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function selectSort(arr) &#123;</div><div class="line">    var len =arr.length;</div><div class="line">    var  minIndex;</div><div class="line">    var temp;</div><div class="line"></div><div class="line">    for(var i=0;i&lt;len;i++)&#123;</div><div class="line">        minIndex=i;</div><div class="line">        for(var j=i+1;j&lt;len;j++)&#123;</div><div class="line">            if(arr[minIndex]&lt;arr[j])&#123;</div><div class="line">                minIndex=j;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        temp =arr[i];</div><div class="line">        arr[i]= arr[minIndex];</div><div class="line">        arr[minIndex]=temp;</div><div class="line">    &#125;</div><div class="line">    return arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>希尔排序<br>间隔插入排序  当间隔为1时 完成排序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function shellSort(arr,d) &#123;</div><div class="line">    var len =arr.length;</div><div class="line">    var temp;</div><div class="line">    while(true)&#123;</div><div class="line">        for(var i=0;id;i++)&#123;</div><div class="line">            for(var j=i;j+dlen;j+=d)&#123;</div><div class="line">                if(arr[j]arr[j+d])&#123;</div><div class="line">                    temp=arr[j];</div><div class="line">                    arr[j]=arr[d+j];</div><div class="line">                    arr[j+d]=temp;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        if(d==1) break;</div><div class="line">        d--;</div><div class="line">    &#125;</div><div class="line">    return arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function shellSort(arr,d) &#123;</div><div class="line">    var len =arr.length;</div><div class="line">    var temp;</div><div class="line">    while(true)&#123;</div><div class="line">        for(var i=0;i&lt;d;i++)&#123;</div><div class="line">            for(var j=i;j+d&lt;len;j+=d)&#123;</div><div class="line">                if(arr[j]&lt;arr[j+d])&#123;</div><div class="line">                    temp=arr[j];</div><div class="line">                    arr[j]=arr[d+j];</div><div class="line">                    arr[j+d]=temp;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        if(d==1) break;</div><div class="line">        d--;</div><div class="line">    &#125;</div><div class="line">    return arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>归并排序<br>分而治之</p>
 </li>
 <li><p>快速排序<br>默认第一个元素 和之后元素比较从高位开始，比它大则继续比较，比它小则给low位赋值；</p>
 <pre><code> 然后从低位开始，比它小则继续比较，比它大则给high赋值
 最后：v[low]=key
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">function quickSort(v,left,right) &#123;</div><div class="line">    if(left  right)&#123;</div><div class="line">        var key = v[left];</div><div class="line">        var low = left;</div><div class="line">        var high = right;</div><div class="line">        while(low  high)&#123;</div><div class="line">            while(low  high &amp;&amp; v[high]  key)&#123;</div><div class="line">                high--;</div><div class="line">            &#125;</div><div class="line">            v[low] = v[high];</div><div class="line">            while(low  high &amp;&amp; v[low]  key)&#123;</div><div class="line">                low++;</div><div class="line">            &#125;</div><div class="line">            v[high] = v[low];</div><div class="line">        &#125;</div><div class="line">        v[low] = key;</div><div class="line">        quickSort(v,left,low-1);</div><div class="line">        quickSort(v,low+1,right);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">function quickSort(v,left,right) &#123;</div><div class="line">    if(left  right)&#123;</div><div class="line">        var key = v[left];</div><div class="line">        var low = left;</div><div class="line">        var high = right;</div><div class="line">        while(low &lt; high)&#123;</div><div class="line">            while(low &lt; high &amp;&amp; v[high] &lt; key)&#123;</div><div class="line">                high--;</div><div class="line">            &#125;</div><div class="line">            v[low] = v[high];</div><div class="line">            while(low &lt; high &amp;&amp; v[low] &lt; key)&#123;</div><div class="line">                low++;</div><div class="line">            &#125;</div><div class="line">            v[high] = v[low];</div><div class="line">        &#125;</div><div class="line">        v[low] = key;</div><div class="line">        quickSort(v,left,low-1);</div><div class="line">        quickSort(v,low+1,right);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
 </ol>
 
           
@@ -384,7 +383,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/09/touch-click/" itemprop="url">
+                <a class="post-title-link" href="/2016/11/09/2016-11-10-touch-click/" itemprop="url">
                   移动端touch与click
                 </a>
               
@@ -397,7 +396,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-11-09T08:53:15+08:00" content="2016-11-09">
               2016-11-09
             </time>
@@ -413,12 +412,12 @@
 
           
           
-             <span id="/2016/11/09/touch-click/" class="leancloud_visitors" data-flag-title="移动端touch与click">
+             <span id="/2016/11/09/2016-11-10-touch-click/" class="leancloud_visitors" data-flag-title="移动端touch与click">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">visitors </span>
+               <span class="post-meta-item-text">阅读次数 </span>
                <span class="leancloud-visitors-count"></span>
               </span>
           
@@ -437,119 +436,15 @@
       
         
           
-            <p>请不要携带以下meta<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;</div></pre></td></tr></table></figure></p>
-<p>script代码内容如下:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> startTime;</div><div class="line">   <span class="keyword">var</span> log = <span class="function"><span class="keyword">function</span> (<span class="params">msg</span>) </span>&#123;</div><div class="line">       <span class="keyword">var</span> div = $(<span class="string">'&lt;div&gt;&lt;/div&gt;'</span>);</div><div class="line">       div.html((<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()) + <span class="string">': '</span> + (<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() - startTime) + <span class="string">': '</span> + msg)</div><div class="line">       $(<span class="string">'body'</span>).append(div);</div><div class="line">   &#125;;</div><div class="line">   <span class="keyword">var</span> touchStart = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">       startTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</div><div class="line">       log(<span class="string">'touchStart'</span>);</div><div class="line">   &#125;;</div><div class="line">   <span class="keyword">var</span> touchEnd = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">       log(<span class="string">'touchEnd'</span>);</div><div class="line">   &#125;;</div><div class="line">   <span class="keyword">var</span> mouseDown = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">       log(<span class="string">'mouseDown'</span>);</div><div class="line">   &#125;;</div><div class="line">   <span class="keyword">var</span> mouseClick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">       log(<span class="string">'mouseClick'</span>);</div><div class="line">   &#125;;</div><div class="line">   <span class="keyword">var</span> mouseUp = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">       log(<span class="string">'mouseUp'</span>);</div><div class="line">   &#125;;</div><div class="line">   <span class="keyword">var</span> d = $(<span class="string">'#d'</span>);</div><div class="line">   <span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'mousedown'</span>, mouseDown);</div><div class="line">   <span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'click'</span>, mouseClick);</div><div class="line">   <span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'touchstart'</span>, touchStart);</div><div class="line">   <span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'mouseup'</span>, mouseUp);</div><div class="line">   <span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'touchend'</span>, touchEnd)；</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/29/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-09-29T09:12:42+08:00" content="2016-09-29">
-              2016-09-29
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/09/29/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">visitors </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Kongzhexin</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <p>移动端touch比click事件快300ms,追其原因是手机端300ms用来等待是否用户进行双击缩放，所以说没有缩放就没有这个bug</p>
+<p>为了解决这个问题:</p>
+<ol>
+<li>禁止缩放;</li>
+<li>移动端的库zepto、fastclick等都在touchend事件中模拟了click事件提高了响应速度;</li>
+</ol>
+<p>测试时，请不要携带以下meta中的content（因为该标签会启动禁止缩放）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;</div></pre></td></tr></table></figure></p>
+<p>javascript代码内容如下:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> startTime;</div><div class="line"><span class="keyword">var</span> log = <span class="function"><span class="keyword">function</span> (<span class="params">msg</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</div><div class="line">    div.append(<span class="built_in">document</span>.createTextNode((<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()) + <span class="string">': '</span> + (<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() - startTime) + <span class="string">': '</span> + msg))</div><div class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>].append(div);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> touchStart = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    startTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</div><div class="line">    log(<span class="string">'touchStart'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> touchEnd = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    log(<span class="string">'touchEnd'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> mouseDown = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    log(<span class="string">'mouseDown'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> mouseClick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    log(<span class="string">'mouseClick'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> mouseUp = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    log(<span class="string">'mouseUp'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'mousedown'</span>, mouseDown);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'click'</span>, mouseClick);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'touchstart'</span>, touchStart);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'mouseup'</span>, mouseUp);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'touchend'</span>, touchEnd);</div></pre></td></tr></table></figure></p>
+<p>–EOF–</p>
 
           
         
@@ -614,18 +509,25 @@
                src="/images/avatar.png"
                alt="seraph" />
           <p class="site-author-name" itemprop="name">seraph</p>
-          <p class="site-description motion-element" itemprop="description">jser</p>
+          <p class="site-description motion-element" itemprop="description">a jser are trying to climb pit</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -678,11 +580,11 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
-  Theme -
+  主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
