@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: kongzhexin
-subtitle:
-description:
-author: kongzhexin
-language:
-timezone:
+title: seraph
+subtitle: moon
+description: a jser are trying to climb pit
+author: seraph
+language: zh-Hans
+timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'

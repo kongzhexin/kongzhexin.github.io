@@ -1,15 +1,17 @@
 ﻿---
-title: sort
+title: Sort algorithm
+tags: [Sort,javascript,algorithm]
 ---
+
 1. 冒泡排序 
 所有元素循环一遍
 ```
 function bublesort(arr) {
     var len=arr.length;
     var temp;
-    for(var i=0;ilen;i++){
-        for(var j=0;jlen-1-i;j++){
-            if(arr[j]arr[j+1]){    
+    for(var i=0;i<len;i++){
+        for(var j=0;j<len-1-i;j++){
+            if(arr[j]<arr[j+1]){    
                 temp=arr[j];
                 arr[j]=arr[j+1];
                 arr[j+1]=temp;
@@ -25,8 +27,8 @@ function bublesort(arr) {
 function insertSort(arr) {
     var len =arr.length;
     var temp;
-    for(var i=1;ilen;i++){
-        while(arr[i]arr[i-1]&&i-1=0){
+    for(var i=1;i<len;i++){
+        while(arr[i]<arr[i-1]&&i-1=0){
             temp=arr[i];
             arr[i]=arr[i-1];
             arr[i-1]=temp;
@@ -44,10 +46,10 @@ function selectSort(arr) {
     var  minIndex;
     var temp;
 
-    for(var i=0;ilen;i++){
+    for(var i=0;i<len;i++){
         minIndex=i;
-        for(var j=i+1;jlen;j++){
-            if(arr[minIndex]arr[j]){
+        for(var j=i+1;j<len;j++){
+            if(arr[minIndex]<arr[j]){
                 minIndex=j;
             }
         }
@@ -65,9 +67,9 @@ function shellSort(arr,d) {
     var len =arr.length;
     var temp;
     while(true){
-        for(var i=0;id;i++){
-            for(var j=i;j+dlen;j+=d){
-                if(arr[j]arr[j+d]){
+        for(var i=0;i<d;i++){
+            for(var j=i;j+d<len;j+=d){
+                if(arr[j]<arr[j+d]){
                     temp=arr[j];
                     arr[j]=arr[d+j];
                     arr[j+d]=temp;
@@ -94,12 +96,12 @@ function quickSort(v,left,right) {
         var key = v[left];
         var low = left;
         var high = right;
-        while(low  high){
-            while(low  high && v[high]  key){
+        while(low < high){
+            while(low < high && v[high] < key){
                 high--;
             }
             v[low] = v[high];
-            while(low  high && v[low]  key){
+            while(low < high && v[low] < key){
                 low++;
             }
             v[high] = v[low];
