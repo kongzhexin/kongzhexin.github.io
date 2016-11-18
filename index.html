@@ -261,6 +261,142 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/18/Vue学习总结/" itemprop="url">
+                  Vue学习总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-18T15:28:57+08:00" content="2016-11-18">
+              2016-11-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/18/Vue学习总结/" class="leancloud_visitors" data-flag-title="Vue学习总结">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Vue.js 的<em>目标</em>是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件,它有一下特点:</p>
+<ol>
+<li><p>声明式渲染</p>
+<blockquote>
+<p>模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 Math 和 Date 。你不应该在模板表达式中试图访问用户定义的全局变量。</p>
+</blockquote>
+</li>
+<li><p>指令系统</p>
+<blockquote>
+<p>v-bind属性 简写:<br>v-on事件 简写@</p>
+</blockquote>
+</li>
+<li><p>计算属性</p>
+<blockquote>
+<p>然而，不同的是计算缓存基于它的相关依赖。计算属性只有在它的相关依赖发生改变时才会重新评估。这就意味着如果 message 没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的结果，而不必运行函数。<br>这也同样意味着如下计算属性将不会更新，因为 Date.now() 并不会被依赖：</p>
+</blockquote>
+</li>
+</ol>
+<center><br><br></center>
+
+<p>##组件系统</p>
+<ol>
+<li><p>Props传递数据</p>
+<blockquote>
+<p>组件实例的作用域是孤立的。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。<br>prop 是父组件用来传递数据的一个自定义属性。子组件需要显式地用 props 选项 声明 “prop”,组件的 data 必须为函数</p>
+</blockquote>
+</li>
+<li><p>自定义事件</p>
+<blockquote>
+<p>父组件是使用 props 传递数据给子组件，但如果子组件要把数据传递回去，应该怎样做？那就是自定义事件！<br>父组件可以在使用子组件的地方直接用 v-on 来监听子组件触发的事件<br>使用$.emit()触发事件</p>
+<center><br><br></center>
+</blockquote>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/18/CSS基础学习/" itemprop="url">
                   CSS基础学习
                 </a>
@@ -315,144 +451,6 @@
         
           
             
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/18/Vue2-0学习总结/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-18T00:00:00+08:00" content="2016-11-18">
-              2016-11-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/11/18/Vue2-0学习总结/" class="leancloud_visitors" data-flag-title="">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p>title: Vue2.0学习总结<br>date: 2016-11-18 15:28:57<br>tags:<br>[vue2.0,vuex,vue-router]—</p>
-<p>Vue.js 的<em>目标</em>是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件,它有一下特点:</p>
-<ol>
-<li><p>声明式渲染</p>
-<blockquote>
-<p>模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 Math 和 Date 。你不应该在模板表达式中试图访问用户定义的全局变量。</p>
-</blockquote>
-</li>
-<li><p>指令系统</p>
-<blockquote>
-<p>v-bind属性 简写:<br>v-on事件 简写@</p>
-</blockquote>
-</li>
-<li><p>计算属性</p>
-<blockquote>
-<p>然而，不同的是计算缓存基于它的相关依赖。计算属性只有在它的相关依赖发生改变时才会重新评估。这就意味着如果 message 没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的结果，而不必运行函数。<br>这也同样意味着如下计算属性将不会更新，因为 Date.now() 并不会被依赖：</p>
-</blockquote>
-</li>
-</ol>
-<center><br><br></center>
-
-<p>##组件系统</p>
-<ol>
-<li><p>Props传递数据</p>
-<blockquote>
-<p>组件实例的作用域是孤立的。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。<br>prop 是父组件用来传递数据的一个自定义属性。子组件需要显式地用 props 选项 声明 “prop”,组件的 data 必须为函数</p>
-</blockquote>
-</li>
-<li><p>自定义事件</p>
-<blockquote>
-<p>父组件是使用 props 传递数据给子组件，但如果子组件要把数据传递回去，应该怎样做？那就是自定义事件！<br>父组件可以在使用子组件的地方直接用 v-on 来监听子组件触发的事件<br>使用$.emit()触发事件</p>
-<center><br><br></center>
-</blockquote>
-</li>
-</ol>
-
           
         
       

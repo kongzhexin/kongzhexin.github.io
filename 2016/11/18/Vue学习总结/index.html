@@ -96,31 +96,58 @@
 
 
 
-<meta name="description" content="title: Vue2.0学习总结date: 2016-11-18 15:28:57tags:[vue2.0,vuex,vue-router]—
-Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件,它有一下特点:
+<meta name="description" content="Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件,它有一下特点:
 
 声明式渲染
 
-模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 Math 和 Date 。你不应该在模板表达式中试图访问用户定义的全局变量。">
+模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 Math 和 Date 。你不应该在模板表达式中试图访问用户定义的全局变量。
+
+
+指令系统
+
+v-bind属性 简写:v-on事件 简写@
+
+
+计算属性
+
+然而，不同的是计算缓存基于它的相关依赖。计算属性只有在它的相关依赖发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="seraph">
-<meta property="og:url" content="http://yoursite.com/2016/11/18/Vue2-0学习总结/index.html">
+<meta property="og:title" content="Vue学习总结">
+<meta property="og:url" content="http://yoursite.com/2016/11/18/Vue学习总结/index.html">
 <meta property="og:site_name" content="seraph">
-<meta property="og:description" content="title: Vue2.0学习总结date: 2016-11-18 15:28:57tags:[vue2.0,vuex,vue-router]—
-Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件,它有一下特点:
+<meta property="og:description" content="Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件,它有一下特点:
 
 声明式渲染
 
-模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 Math 和 Date 。你不应该在模板表达式中试图访问用户定义的全局变量。">
-<meta property="og:updated_time" content="2016-11-18T08:15:36.776Z">
+模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 Math 和 Date 。你不应该在模板表达式中试图访问用户定义的全局变量。
+
+
+指令系统
+
+v-bind属性 简写:v-on事件 简写@
+
+
+计算属性
+
+然而，不同的是计算缓存基于它的相关依赖。计算属性只有在它的相关依赖发">
+<meta property="og:updated_time" content="2016-11-18T08:28:39.859Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="seraph">
-<meta name="twitter:description" content="title: Vue2.0学习总结date: 2016-11-18 15:28:57tags:[vue2.0,vuex,vue-router]—
-Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件,它有一下特点:
+<meta name="twitter:title" content="Vue学习总结">
+<meta name="twitter:description" content="Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件,它有一下特点:
 
 声明式渲染
 
-模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 Math 和 Date 。你不应该在模板表达式中试图访问用户定义的全局变量。">
+模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 Math 和 Date 。你不应该在模板表达式中试图访问用户定义的全局变量。
+
+
+指令系统
+
+v-bind属性 简写:v-on事件 简写@
+
+
+计算属性
+
+然而，不同的是计算缓存基于它的相关依赖。计算属性只有在它的相关依赖发">
 
 
 
@@ -141,10 +168,10 @@ Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和�
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/18/Vue2-0学习总结/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/18/Vue学习总结/"/>
 
 
-  <title>  | seraph </title>
+  <title> Vue学习总结 | seraph </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -274,7 +301,7 @@ Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和�
             
             
               
-                
+                Vue学习总结
               
             
           </h1>
@@ -286,7 +313,7 @@ Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-18T00:00:00+08:00" content="2016-11-18">
+            <time itemprop="dateCreated" datetime="2016-11-18T15:28:57+08:00" content="2016-11-18">
               2016-11-18
             </time>
           </span>
@@ -301,7 +328,7 @@ Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和�
 
           
           
-             <span id="/2016/11/18/Vue2-0学习总结/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2016/11/18/Vue学习总结/" class="leancloud_visitors" data-flag-title="Vue学习总结">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -323,9 +350,7 @@ Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和�
       
 
       
-        <hr>
-<p>title: Vue2.0学习总结<br>date: 2016-11-18 15:28:57<br>tags:<br>[vue2.0,vuex,vue-router]—</p>
-<p>Vue.js 的<em>目标</em>是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件,它有一下特点:</p>
+        <p>Vue.js 的<em>目标</em>是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件,它有一下特点:</p>
 <ol>
 <li><p>声明式渲染</p>
 <blockquote>
@@ -400,17 +425,13 @@ Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/10/sort-algorithm/" rel="next" title="Sort algorithm">
-                <i class="fa fa-chevron-left"></i> Sort algorithm
+              <a href="/2016/11/18/CSS基础学习/" rel="next" title="CSS基础学习">
+                <i class="fa fa-chevron-left"></i> CSS基础学习
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/18/CSS基础学习/" rel="prev" title="CSS基础学习">
-                CSS基础学习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
