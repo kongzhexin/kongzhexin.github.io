@@ -4,9 +4,6 @@ date: 2017-01-22 10:30:44
 tags: [jQuery,ready]
 ---
 
-
-# jQuery3.0 domReady的实现原理
---------------------------------
 ### 实现思路：
 使用了jQuery内部的异步机制Defferred ，回调执行的时机根据dom是否加载完成判断,
 $(function(){})和$(document).ready(function(){}) 这两种写法是等价的都会走一样的执行过程
