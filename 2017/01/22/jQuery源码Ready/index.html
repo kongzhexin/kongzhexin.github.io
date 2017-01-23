@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="移动端,事件," />
+  <meta name="keywords" content="jQuery,ready," />
 
 
 
@@ -96,34 +96,25 @@
 
 
 
-<meta name="description" content="移动端touch比click事件快300ms,追其原因是手机端300ms用来等待是否用户进行双击缩放，所以说没有缩放就没有这个bug
-为了解决这个问题:
+<meta name="description" content="实现思路：使用了jQuery内部的异步机制Defferred ，回调执行的时机根据dom是否加载完成判断,$(function(){})和$(document).ready(function(){}) 这两种写法是等价的都会走一样的执行过程
 
-禁止缩放;
-移动端的库zepto、fastclick等都在touchend事件中模拟了click事件提高了响应速度;
-
-测试时，请不要携带以下meta中的content（因为该标签会启动禁止缩放）1&amp;lt;meta name=&amp;quot;vie">
+$.fn.ready()  -&amp;gt; readList.then();
+$.ready() —&amp;gt; readList.resolveWith();">
 <meta property="og:type" content="article">
-<meta property="og:title" content="移动端touch与click">
-<meta property="og:url" content="http://yoursite.com/2016/11/10/touch-click/index.html">
+<meta property="og:title" content="jQuery源码domReady">
+<meta property="og:url" content="http://yoursite.com/2017/01/22/jQuery源码Ready/index.html">
 <meta property="og:site_name" content="seraph">
-<meta property="og:description" content="移动端touch比click事件快300ms,追其原因是手机端300ms用来等待是否用户进行双击缩放，所以说没有缩放就没有这个bug
-为了解决这个问题:
+<meta property="og:description" content="实现思路：使用了jQuery内部的异步机制Defferred ，回调执行的时机根据dom是否加载完成判断,$(function(){})和$(document).ready(function(){}) 这两种写法是等价的都会走一样的执行过程
 
-禁止缩放;
-移动端的库zepto、fastclick等都在touchend事件中模拟了click事件提高了响应速度;
-
-测试时，请不要携带以下meta中的content（因为该标签会启动禁止缩放）1&amp;lt;meta name=&amp;quot;vie">
-<meta property="og:updated_time" content="2017-01-22T02:02:15.142Z">
+$.fn.ready()  -&amp;gt; readList.then();
+$.ready() —&amp;gt; readList.resolveWith();">
+<meta property="og:updated_time" content="2017-01-23T02:56:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="移动端touch与click">
-<meta name="twitter:description" content="移动端touch比click事件快300ms,追其原因是手机端300ms用来等待是否用户进行双击缩放，所以说没有缩放就没有这个bug
-为了解决这个问题:
+<meta name="twitter:title" content="jQuery源码domReady">
+<meta name="twitter:description" content="实现思路：使用了jQuery内部的异步机制Defferred ，回调执行的时机根据dom是否加载完成判断,$(function(){})和$(document).ready(function(){}) 这两种写法是等价的都会走一样的执行过程
 
-禁止缩放;
-移动端的库zepto、fastclick等都在touchend事件中模拟了click事件提高了响应速度;
-
-测试时，请不要携带以下meta中的content（因为该标签会启动禁止缩放）1&amp;lt;meta name=&amp;quot;vie">
+$.fn.ready()  -&amp;gt; readList.then();
+$.ready() —&amp;gt; readList.resolveWith();">
 
 
 
@@ -144,10 +135,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/10/touch-click/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/01/22/jQuery源码Ready/"/>
 
 
-  <title> 移动端touch与click | seraph </title>
+  <title> jQuery源码domReady | seraph </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -277,7 +268,7 @@
             
             
               
-                移动端touch与click
+                jQuery源码domReady
               
             
           </h1>
@@ -289,8 +280,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-10T00:00:00+08:00" content="2016-11-10">
-              2016-11-10
+            <time itemprop="dateCreated" datetime="2017-01-22T10:30:44+08:00" content="2017-01-22">
+              2017-01-22
             </time>
           </span>
 
@@ -304,7 +295,7 @@
 
           
           
-             <span id="/2016/11/10/touch-click/" class="leancloud_visitors" data-flag-title="移动端touch与click">
+             <span id="/2017/01/22/jQuery源码Ready/" class="leancloud_visitors" data-flag-title="jQuery源码domReady">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -326,15 +317,13 @@
       
 
       
-        <p>移动端touch比click事件快300ms,追其原因是手机端300ms用来等待是否用户进行双击缩放，所以说没有缩放就没有这个bug</p>
-<p>为了解决这个问题:</p>
+        <h3 id="实现思路："><a href="#实现思路：" class="headerlink" title="实现思路："></a>实现思路：</h3><p>使用了jQuery内部的异步机制Defferred ，回调执行的时机根据dom是否加载完成判断,<br>$(function(){})和$(document).ready(function(){}) 这两种写法是等价的都会走一样的执行过程</p>
 <ol>
-<li>禁止缩放;</li>
-<li>移动端的库zepto、fastclick等都在touchend事件中模拟了click事件提高了响应速度;</li>
+<li>$.fn.ready()  -&gt; readList.then();</li>
+<li>$.ready() —&gt; readList.resolveWith();</li>
 </ol>
-<p>测试时，请不要携带以下meta中的content（因为该标签会启动禁止缩放）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;</div></pre></td></tr></table></figure></p>
-<p>javascript代码内容如下:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> startTime;</div><div class="line"><span class="keyword">var</span> log = <span class="function"><span class="keyword">function</span> (<span class="params">msg</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</div><div class="line">    div.append(<span class="built_in">document</span>.createTextNode((<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()) + <span class="string">': '</span> + (<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() - startTime) + <span class="string">': '</span> + msg))</div><div class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>].append(div);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> touchStart = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    startTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</div><div class="line">    log(<span class="string">'touchStart'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> touchEnd = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    log(<span class="string">'touchEnd'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> mouseDown = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    log(<span class="string">'mouseDown'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> mouseClick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    log(<span class="string">'mouseClick'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> mouseUp = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    log(<span class="string">'mouseUp'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'mousedown'</span>, mouseDown);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'click'</span>, mouseClick);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'touchstart'</span>, touchStart);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'mouseup'</span>, mouseUp);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'touchend'</span>, touchEnd);</div></pre></td></tr></table></figure></p>
-<p>–EOF–</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line">// The deferred used on DOM ready</div><div class="line">var readyList = jQuery.Deferred();  //声明一个异步对象</div><div class="line"></div><div class="line">jQuery.fn.ready = function( fn ) &#123;</div><div class="line"></div><div class="line">	readyList</div><div class="line">		.then( fn )</div><div class="line"></div><div class="line">		// Wrap jQuery.readyException in a function so that the lookup</div><div class="line">		// happens at the time of error handling instead of callback</div><div class="line">		// registration.</div><div class="line">		.catch( function( error ) &#123;</div><div class="line">			jQuery.readyException( error );</div><div class="line">		&#125; );</div><div class="line"></div><div class="line">	return this;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">//扩展$.ready() 方法 在completed里调用</div><div class="line">jQuery.extend( &#123;</div><div class="line"></div><div class="line">	// Is the DOM ready to be used? Set to true once it occurs.</div><div class="line">	isReady: false,</div><div class="line"></div><div class="line">	// A counter to track how many items to wait for before</div><div class="line">	// the ready event fires. See #6781</div><div class="line">	readyWait: 1,</div><div class="line">	</div><div class="line">	// Handle when the DOM is ready</div><div class="line">	ready: function( wait ) &#123;</div><div class="line"></div><div class="line">		// Abort if there are pending holds or we&apos;re already ready</div><div class="line">		if ( wait === true ? --jQuery.readyWait : jQuery.isReady ) &#123;</div><div class="line">			return;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		// Remember that the DOM is ready</div><div class="line">		jQuery.isReady = true;</div><div class="line"></div><div class="line">		// If a normal DOM Ready event fired, decrement, and wait if need be</div><div class="line">		if ( wait !== true &amp;&amp; --jQuery.readyWait &gt; 0 ) &#123;</div><div class="line">			return;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		// If there are functions bound, to execute</div><div class="line">		readyList.resolveWith( document, [ jQuery ] );   // 触发回调firewith() ，执行fn函数;</div><div class="line">	&#125;</div><div class="line">&#125; );</div><div class="line"></div><div class="line">jQuery.ready.then = readyList.then;    //  ？？？？注释掉并无影响</div><div class="line"></div><div class="line">// The ready event handler and self cleanup method</div><div class="line">function completed() &#123;</div><div class="line">	document.removeEventListener( &quot;DOMContentLoaded&quot;, completed );</div><div class="line">	window.removeEventListener( &quot;load&quot;, completed );</div><div class="line">	jQuery.ready();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Catch cases where $(document).ready() is called</div><div class="line">// after the browser event has already occurred.</div><div class="line">// Support: IE &lt;=9 - 10 only</div><div class="line">// Older IE sometimes signals &quot;interactive&quot; too soon</div><div class="line">// 判断的部分  根据document的readyState状态   或者  doScroll方法是否可以调用 来判断 dom是否加载完，</div><div class="line">//我的理解第一个if为了防止脚本加载的时候dom已经渲染完成的情况</div><div class="line">if ( document.readyState === &quot;complete&quot; ||</div><div class="line">	( document.readyState !== &quot;loading&quot; &amp;&amp; !document.documentElement.doScroll ) ) &#123;</div><div class="line"></div><div class="line">	// Handle it asynchronously to allow scripts the opportunity to delay ready</div><div class="line">	window.setTimeout( jQuery.ready );</div><div class="line"></div><div class="line">&#125; else &#123;</div><div class="line"></div><div class="line">	// Use the handy event callback  通过DOM加载完成事件执行回调函数</div><div class="line">	document.addEventListener( &quot;DOMContentLoaded&quot;, completed );</div><div class="line"></div><div class="line">	// A fallback to window.onload, that will always work</div><div class="line">	window.addEventListener( &quot;load&quot;, completed );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>基本上理解了关于$(document).Ready()执行的原理，其中关于$.Deferred对象还需深入的了解。</p>
 
       
     </div>
@@ -373,9 +362,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/移动端/" rel="tag">#移动端</a>
+            <a href="/tags/jQuery/" rel="tag">#jQuery</a>
           
-            <a href="/tags/事件/" rel="tag">#事件</a>
+            <a href="/tags/ready/" rel="tag">#ready</a>
           
         </div>
       
@@ -384,12 +373,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/11/18/Vue学习总结/" rel="next" title="Vue学习总结">
+                <i class="fa fa-chevron-left"></i> Vue学习总结
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/10/sort-algorithm/" rel="prev" title="Sort algorithm">
-                Sort algorithm <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/22/jQuery源码Cache/" rel="prev" title="jQuery源码缓存">
+                jQuery源码缓存 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -508,7 +501,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现思路："><span class="nav-number">1.</span> <span class="nav-text">实现思路：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码如下："><span class="nav-number">2.</span> <span class="nav-text">代码如下：</span></a></li></ol></div>
             
           </div>
         </section>

@@ -261,6 +261,230 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/22/jQuery源码Cache/" itemprop="url">
+                  jQuery源码缓存
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-22T14:39:08+08:00" content="2017-01-22">
+              2017-01-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/01/22/jQuery源码Cache/" class="leancloud_visitors" data-flag-title="jQuery源码缓存">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>在jQuery中缓存几乎无处不在，在多个模块中都有应用，非常重要的一部分，单个拎出来却是相对简单的内容。
+</code></pre><h3 id="data构造函数与原型"><a href="#data构造函数与原型" class="headerlink" title="data构造函数与原型"></a>data构造函数与原型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function Data() &#123;</div><div class="line">	this.expando = jQuery.expando + Data.uid++;   //expando =&quot;jQuery&quot; + ( version + Math.random() ).replace( /\D/g, &quot;&quot; )   其实就是一个随机数，每次浏览器加载都会生成一个</div><div class="line">&#125;</div><div class="line"></div><div class="line">Data.uid = 1;</div><div class="line">Data.prototype = &#123;</div><div class="line">        cache : function()&#123;&#125;,</div><div class="line">        get : function()&#123;&#125;,</div><div class="line">        set : function()&#123;&#125;,</div><div class="line">        access : function()&#123;&#125;,</div><div class="line">        remove : function()&#123;&#125;,</div><div class="line">        hasData : function()&#123;&#125;,</div><div class="line">&#125;</div><div class="line">var dataPriv = new Data();             // 供jQuery使用，比如事件，动画等</div><div class="line"></div><div class="line">var dataUser = new Data();           //供用户使用，存储值、对象</div></pre></td></tr></table></figure>
+<h3 id="data"><a href="#data" class="headerlink" title=".data()"></a>.data()</h3><blockquote>
+<p>  该方法允许我们在DOM元素上绑定任意类型的数据,避免了循环引用的内存泄漏风险 ,因为通过 jQuery 方法删除的或者当用户离开页面时，jQuery 同时也会移除添加在上面的数据。 </p>
+<p>  在之前1.x的jQuery版本里Data的存储并不是现在这样，而是通过id关联，在$.cache中存储,就是为了防止内存泄漏。</p>
+<p>  通过$(“div”).data(‘a’,1) 和$(“div”).data({‘a’,1})， 根据参数的形式与个数执行不同的逻辑，详细过程可跟踪代码测试</p>
+<p>  通过$(“.slime”).click(function(){})添加，便会存在另一个属性里</p>
+</blockquote>
+<center><br><img src="/2017/01/22/jQuery源码Cache/dataUser.png" alt="绑定数据" title="绑定数据"><br></center>
+
+<center><br><img src="/2017/01/22/jQuery源码Cache/dataPriv.png" alt="绑定事件" title="绑定事件"><br></center>
+
+<h3 id="源码如下："><a href="#源码如下：" class="headerlink" title="源码如下："></a>源码如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">jQuery.fn.extend( &#123;</div><div class="line">	data: function( key, value ) &#123;</div><div class="line">		var i, name, data,</div><div class="line">			elem = this[ 0 ],</div><div class="line">			attrs = elem &amp;&amp; elem.attributes;</div><div class="line"></div><div class="line">		// Gets all values</div><div class="line">		if ( key === undefined ) &#123;</div><div class="line">		</div><div class="line">			return data;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		// Sets multiple values</div><div class="line">		if ( typeof key === &quot;object&quot; ) &#123;</div><div class="line">			return this.each( function() &#123;</div><div class="line">				dataUser.set( this, key );</div><div class="line">			&#125; );</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		return access( this, function( value ) &#123;</div><div class="line">			var data;</div><div class="line">            ...</div><div class="line">			// Set the data...</div><div class="line">			this.each( function() &#123;</div><div class="line"></div><div class="line">				// We always store the camelCased key</div><div class="line">				dataUser.set( this, key, value );</div><div class="line">			&#125; );</div><div class="line">		&#125;, null, value, arguments.length &gt; 1, null, true );</div><div class="line">	&#125;,</div><div class="line"></div><div class="line">	removeData: function( key ) &#123;</div><div class="line">		return this.each( function() &#123;</div><div class="line">			dataUser.remove( this, key );</div><div class="line">		&#125; );</div><div class="line">	&#125;</div><div class="line">&#125; );</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/22/jQuery源码Ready/" itemprop="url">
+                  jQuery源码domReady
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-22T10:30:44+08:00" content="2017-01-22">
+              2017-01-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/01/22/jQuery源码Ready/" class="leancloud_visitors" data-flag-title="jQuery源码domReady">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="实现思路："><a href="#实现思路：" class="headerlink" title="实现思路："></a>实现思路：</h3><p>使用了jQuery内部的异步机制Defferred ，回调执行的时机根据dom是否加载完成判断,<br>$(function(){})和$(document).ready(function(){}) 这两种写法是等价的都会走一样的执行过程</p>
+<ol>
+<li>$.fn.ready()  -&gt; readList.then();</li>
+<li>$.ready() —&gt; readList.resolveWith();</li>
+</ol>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line">// The deferred used on DOM ready</div><div class="line">var readyList = jQuery.Deferred();  //声明一个异步对象</div><div class="line"></div><div class="line">jQuery.fn.ready = function( fn ) &#123;</div><div class="line"></div><div class="line">	readyList</div><div class="line">		.then( fn )</div><div class="line"></div><div class="line">		// Wrap jQuery.readyException in a function so that the lookup</div><div class="line">		// happens at the time of error handling instead of callback</div><div class="line">		// registration.</div><div class="line">		.catch( function( error ) &#123;</div><div class="line">			jQuery.readyException( error );</div><div class="line">		&#125; );</div><div class="line"></div><div class="line">	return this;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">//扩展$.ready() 方法 在completed里调用</div><div class="line">jQuery.extend( &#123;</div><div class="line"></div><div class="line">	// Is the DOM ready to be used? Set to true once it occurs.</div><div class="line">	isReady: false,</div><div class="line"></div><div class="line">	// A counter to track how many items to wait for before</div><div class="line">	// the ready event fires. See #6781</div><div class="line">	readyWait: 1,</div><div class="line">	</div><div class="line">	// Handle when the DOM is ready</div><div class="line">	ready: function( wait ) &#123;</div><div class="line"></div><div class="line">		// Abort if there are pending holds or we&apos;re already ready</div><div class="line">		if ( wait === true ? --jQuery.readyWait : jQuery.isReady ) &#123;</div><div class="line">			return;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		// Remember that the DOM is ready</div><div class="line">		jQuery.isReady = true;</div><div class="line"></div><div class="line">		// If a normal DOM Ready event fired, decrement, and wait if need be</div><div class="line">		if ( wait !== true &amp;&amp; --jQuery.readyWait &gt; 0 ) &#123;</div><div class="line">			return;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		// If there are functions bound, to execute</div><div class="line">		readyList.resolveWith( document, [ jQuery ] );   // 触发回调firewith() ，执行fn函数;</div><div class="line">	&#125;</div><div class="line">&#125; );</div><div class="line"></div><div class="line">jQuery.ready.then = readyList.then;    //  ？？？？注释掉并无影响</div><div class="line"></div><div class="line">// The ready event handler and self cleanup method</div><div class="line">function completed() &#123;</div><div class="line">	document.removeEventListener( &quot;DOMContentLoaded&quot;, completed );</div><div class="line">	window.removeEventListener( &quot;load&quot;, completed );</div><div class="line">	jQuery.ready();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Catch cases where $(document).ready() is called</div><div class="line">// after the browser event has already occurred.</div><div class="line">// Support: IE &lt;=9 - 10 only</div><div class="line">// Older IE sometimes signals &quot;interactive&quot; too soon</div><div class="line">// 判断的部分  根据document的readyState状态   或者  doScroll方法是否可以调用 来判断 dom是否加载完，</div><div class="line">//我的理解第一个if为了防止脚本加载的时候dom已经渲染完成的情况</div><div class="line">if ( document.readyState === &quot;complete&quot; ||</div><div class="line">	( document.readyState !== &quot;loading&quot; &amp;&amp; !document.documentElement.doScroll ) ) &#123;</div><div class="line"></div><div class="line">	// Handle it asynchronously to allow scripts the opportunity to delay ready</div><div class="line">	window.setTimeout( jQuery.ready );</div><div class="line"></div><div class="line">&#125; else &#123;</div><div class="line"></div><div class="line">	// Use the handy event callback  通过DOM加载完成事件执行回调函数</div><div class="line">	document.addEventListener( &quot;DOMContentLoaded&quot;, completed );</div><div class="line"></div><div class="line">	// A fallback to window.onload, that will always work</div><div class="line">	window.addEventListener( &quot;load&quot;, completed );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>基本上理解了关于$(document).Ready()执行的原理，其中关于$.Deferred对象还需深入的了解。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/18/Vue学习总结/" itemprop="url">
                   Vue学习总结
                 </a>
@@ -752,7 +976,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -762,7 +986,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -809,8 +1033,8 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

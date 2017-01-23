@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="移动端,事件," />
+  <meta name="keywords" content="jQuery,缓存," />
 
 
 
@@ -96,34 +96,22 @@
 
 
 
-<meta name="description" content="移动端touch比click事件快300ms,追其原因是手机端300ms用来等待是否用户进行双击缩放，所以说没有缩放就没有这个bug
-为了解决这个问题:
-
-禁止缩放;
-移动端的库zepto、fastclick等都在touchend事件中模拟了click事件提高了响应速度;
-
-测试时，请不要携带以下meta中的content（因为该标签会启动禁止缩放）1&amp;lt;meta name=&amp;quot;vie">
+<meta name="description" content="在jQuery中缓存几乎无处不在，在多个模块中都有应用，非常重要的一部分，单个拎出来却是相对简单的内容。
+data构造函数与原型12345678910111213141516function Data() &amp;#123;	this.expando = jQuery.expando + Data.uid++;   //expando =&amp;quot;jQuery&amp;quot; + ( version +">
 <meta property="og:type" content="article">
-<meta property="og:title" content="移动端touch与click">
-<meta property="og:url" content="http://yoursite.com/2016/11/10/touch-click/index.html">
+<meta property="og:title" content="jQuery源码缓存">
+<meta property="og:url" content="http://yoursite.com/2017/01/22/jQuery源码Cache/index.html">
 <meta property="og:site_name" content="seraph">
-<meta property="og:description" content="移动端touch比click事件快300ms,追其原因是手机端300ms用来等待是否用户进行双击缩放，所以说没有缩放就没有这个bug
-为了解决这个问题:
-
-禁止缩放;
-移动端的库zepto、fastclick等都在touchend事件中模拟了click事件提高了响应速度;
-
-测试时，请不要携带以下meta中的content（因为该标签会启动禁止缩放）1&amp;lt;meta name=&amp;quot;vie">
-<meta property="og:updated_time" content="2017-01-22T02:02:15.142Z">
+<meta property="og:description" content="在jQuery中缓存几乎无处不在，在多个模块中都有应用，非常重要的一部分，单个拎出来却是相对简单的内容。
+data构造函数与原型12345678910111213141516function Data() &amp;#123;	this.expando = jQuery.expando + Data.uid++;   //expando =&amp;quot;jQuery&amp;quot; + ( version +">
+<meta property="og:image" content="http://yoursite.com/2017/01/22/jQuery源码Cache/dataUser.png">
+<meta property="og:image" content="http://yoursite.com/2017/01/22/jQuery源码Cache/dataPriv.png">
+<meta property="og:updated_time" content="2017-01-23T02:58:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="移动端touch与click">
-<meta name="twitter:description" content="移动端touch比click事件快300ms,追其原因是手机端300ms用来等待是否用户进行双击缩放，所以说没有缩放就没有这个bug
-为了解决这个问题:
-
-禁止缩放;
-移动端的库zepto、fastclick等都在touchend事件中模拟了click事件提高了响应速度;
-
-测试时，请不要携带以下meta中的content（因为该标签会启动禁止缩放）1&amp;lt;meta name=&amp;quot;vie">
+<meta name="twitter:title" content="jQuery源码缓存">
+<meta name="twitter:description" content="在jQuery中缓存几乎无处不在，在多个模块中都有应用，非常重要的一部分，单个拎出来却是相对简单的内容。
+data构造函数与原型12345678910111213141516function Data() &amp;#123;	this.expando = jQuery.expando + Data.uid++;   //expando =&amp;quot;jQuery&amp;quot; + ( version +">
+<meta name="twitter:image" content="http://yoursite.com/2017/01/22/jQuery源码Cache/dataUser.png">
 
 
 
@@ -144,10 +132,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/10/touch-click/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/01/22/jQuery源码Cache/"/>
 
 
-  <title> 移动端touch与click | seraph </title>
+  <title> jQuery源码缓存 | seraph </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -277,7 +265,7 @@
             
             
               
-                移动端touch与click
+                jQuery源码缓存
               
             
           </h1>
@@ -289,8 +277,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-10T00:00:00+08:00" content="2016-11-10">
-              2016-11-10
+            <time itemprop="dateCreated" datetime="2017-01-22T14:39:08+08:00" content="2017-01-22">
+              2017-01-22
             </time>
           </span>
 
@@ -304,7 +292,7 @@
 
           
           
-             <span id="/2016/11/10/touch-click/" class="leancloud_visitors" data-flag-title="移动端touch与click">
+             <span id="/2017/01/22/jQuery源码Cache/" class="leancloud_visitors" data-flag-title="jQuery源码缓存">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -326,15 +314,19 @@
       
 
       
-        <p>移动端touch比click事件快300ms,追其原因是手机端300ms用来等待是否用户进行双击缩放，所以说没有缩放就没有这个bug</p>
-<p>为了解决这个问题:</p>
-<ol>
-<li>禁止缩放;</li>
-<li>移动端的库zepto、fastclick等都在touchend事件中模拟了click事件提高了响应速度;</li>
-</ol>
-<p>测试时，请不要携带以下meta中的content（因为该标签会启动禁止缩放）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;</div></pre></td></tr></table></figure></p>
-<p>javascript代码内容如下:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> startTime;</div><div class="line"><span class="keyword">var</span> log = <span class="function"><span class="keyword">function</span> (<span class="params">msg</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</div><div class="line">    div.append(<span class="built_in">document</span>.createTextNode((<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()) + <span class="string">': '</span> + (<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() - startTime) + <span class="string">': '</span> + msg))</div><div class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>].append(div);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> touchStart = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    startTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</div><div class="line">    log(<span class="string">'touchStart'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> touchEnd = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    log(<span class="string">'touchEnd'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> mouseDown = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    log(<span class="string">'mouseDown'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> mouseClick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    log(<span class="string">'mouseClick'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> mouseUp = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    log(<span class="string">'mouseUp'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'mousedown'</span>, mouseDown);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'click'</span>, mouseClick);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'touchstart'</span>, touchStart);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'mouseup'</span>, mouseUp);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'d'</span>).addEventListener(<span class="string">'touchend'</span>, touchEnd);</div></pre></td></tr></table></figure></p>
-<p>–EOF–</p>
+        <pre><code>在jQuery中缓存几乎无处不在，在多个模块中都有应用，非常重要的一部分，单个拎出来却是相对简单的内容。
+</code></pre><h3 id="data构造函数与原型"><a href="#data构造函数与原型" class="headerlink" title="data构造函数与原型"></a>data构造函数与原型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function Data() &#123;</div><div class="line">	this.expando = jQuery.expando + Data.uid++;   //expando =&quot;jQuery&quot; + ( version + Math.random() ).replace( /\D/g, &quot;&quot; )   其实就是一个随机数，每次浏览器加载都会生成一个</div><div class="line">&#125;</div><div class="line"></div><div class="line">Data.uid = 1;</div><div class="line">Data.prototype = &#123;</div><div class="line">        cache : function()&#123;&#125;,</div><div class="line">        get : function()&#123;&#125;,</div><div class="line">        set : function()&#123;&#125;,</div><div class="line">        access : function()&#123;&#125;,</div><div class="line">        remove : function()&#123;&#125;,</div><div class="line">        hasData : function()&#123;&#125;,</div><div class="line">&#125;</div><div class="line">var dataPriv = new Data();             // 供jQuery使用，比如事件，动画等</div><div class="line"></div><div class="line">var dataUser = new Data();           //供用户使用，存储值、对象</div></pre></td></tr></table></figure>
+<h3 id="data"><a href="#data" class="headerlink" title=".data()"></a>.data()</h3><blockquote>
+<p>  该方法允许我们在DOM元素上绑定任意类型的数据,避免了循环引用的内存泄漏风险 ,因为通过 jQuery 方法删除的或者当用户离开页面时，jQuery 同时也会移除添加在上面的数据。 </p>
+<p>  在之前1.x的jQuery版本里Data的存储并不是现在这样，而是通过id关联，在$.cache中存储,就是为了防止内存泄漏。</p>
+<p>  通过$(“div”).data(‘a’,1) 和$(“div”).data({‘a’,1})， 根据参数的形式与个数执行不同的逻辑，详细过程可跟踪代码测试</p>
+<p>  通过$(“.slime”).click(function(){})添加，便会存在另一个属性里</p>
+</blockquote>
+<center><br><img src="/2017/01/22/jQuery源码Cache/dataUser.png" alt="绑定数据" title="绑定数据"><br></center>
+
+<center><br><img src="/2017/01/22/jQuery源码Cache/dataPriv.png" alt="绑定事件" title="绑定事件"><br></center>
+
+<h3 id="源码如下："><a href="#源码如下：" class="headerlink" title="源码如下："></a>源码如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">jQuery.fn.extend( &#123;</div><div class="line">	data: function( key, value ) &#123;</div><div class="line">		var i, name, data,</div><div class="line">			elem = this[ 0 ],</div><div class="line">			attrs = elem &amp;&amp; elem.attributes;</div><div class="line"></div><div class="line">		// Gets all values</div><div class="line">		if ( key === undefined ) &#123;</div><div class="line">		</div><div class="line">			return data;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		// Sets multiple values</div><div class="line">		if ( typeof key === &quot;object&quot; ) &#123;</div><div class="line">			return this.each( function() &#123;</div><div class="line">				dataUser.set( this, key );</div><div class="line">			&#125; );</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		return access( this, function( value ) &#123;</div><div class="line">			var data;</div><div class="line">            ...</div><div class="line">			// Set the data...</div><div class="line">			this.each( function() &#123;</div><div class="line"></div><div class="line">				// We always store the camelCased key</div><div class="line">				dataUser.set( this, key, value );</div><div class="line">			&#125; );</div><div class="line">		&#125;, null, value, arguments.length &gt; 1, null, true );</div><div class="line">	&#125;,</div><div class="line"></div><div class="line">	removeData: function( key ) &#123;</div><div class="line">		return this.each( function() &#123;</div><div class="line">			dataUser.remove( this, key );</div><div class="line">		&#125; );</div><div class="line">	&#125;</div><div class="line">&#125; );</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -373,9 +365,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/移动端/" rel="tag">#移动端</a>
+            <a href="/tags/jQuery/" rel="tag">#jQuery</a>
           
-            <a href="/tags/事件/" rel="tag">#事件</a>
+            <a href="/tags/缓存/" rel="tag">#缓存</a>
           
         </div>
       
@@ -384,13 +376,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/01/22/jQuery源码Ready/" rel="next" title="jQuery源码domReady">
+                <i class="fa fa-chevron-left"></i> jQuery源码domReady
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/10/sort-algorithm/" rel="prev" title="Sort algorithm">
-                Sort algorithm <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -508,7 +500,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#data构造函数与原型"><span class="nav-number">1.</span> <span class="nav-text">data构造函数与原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#data"><span class="nav-number">2.</span> <span class="nav-text">.data()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码如下："><span class="nav-number">3.</span> <span class="nav-text">源码如下：</span></a></li></ol></div>
             
           </div>
         </section>
