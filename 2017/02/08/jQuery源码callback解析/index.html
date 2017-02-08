@@ -1,0 +1,779 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="jQuery,callback,源码," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="$.Callbacks()
+它就是回调函数队列，控制它的执时机，其是jQuery中很重要的一部分，是后面的deferred和ajax模块的基础，所以我们必须要理解它
+它的主要思想是pub / sub（观察者模式）， 是促进应用程序的松散耦合。而比对其他对象的方法调用的单个对象，一个对象，而不是另一个对象的一个特定的任务或活动，并通知当它发生。观察家也被称为订阅者，它指向观察对象。观察者（Publi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery源码callbacks解析">
+<meta property="og:url" content="http://yoursite.com/2017/02/08/jQuery源码callback解析/index.html">
+<meta property="og:site_name" content="seraph">
+<meta property="og:description" content="$.Callbacks()
+它就是回调函数队列，控制它的执时机，其是jQuery中很重要的一部分，是后面的deferred和ajax模块的基础，所以我们必须要理解它
+它的主要思想是pub / sub（观察者模式）， 是促进应用程序的松散耦合。而比对其他对象的方法调用的单个对象，一个对象，而不是另一个对象的一个特定的任务或活动，并通知当它发生。观察家也被称为订阅者，它指向观察对象。观察者（Publi">
+<meta property="og:updated_time" content="2017-02-08T08:46:14.732Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery源码callbacks解析">
+<meta name="twitter:description" content="$.Callbacks()
+它就是回调函数队列，控制它的执时机，其是jQuery中很重要的一部分，是后面的deferred和ajax模块的基础，所以我们必须要理解它
+它的主要思想是pub / sub（观察者模式）， 是促进应用程序的松散耦合。而比对其他对象的方法调用的单个对象，一个对象，而不是另一个对象的一个特定的任务或活动，并通知当它发生。观察家也被称为订阅者，它指向观察对象。观察者（Publi">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/08/jQuery源码callback解析/"/>
+
+
+  <title> jQuery源码callbacks解析 | seraph </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">seraph</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">moon</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                jQuery源码callbacks解析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-08T08:25:00+08:00" content="2017-02-08">
+              2017-02-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/08/jQuery源码callback解析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/08/jQuery源码callback解析/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/02/08/jQuery源码callback解析/" class="leancloud_visitors" data-flag-title="jQuery源码callbacks解析">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Callbacks"><a href="#Callbacks" class="headerlink" title="$.Callbacks()"></a>$.Callbacks()</h2><ul>
+<li>它就是回调函数队列，控制它的执时机，其是jQuery中很重要的一部分，是后面的deferred和ajax模块的基础，所以我们必须要理解它</li>
+<li>它的主要思想是pub / sub（观察者模式）， 是促进应用程序的松散耦合。而比对其他对象的方法调用的单个对象，一个对象，而不是另一个对象的一个特定的任务或活动，并通知当它发生。观察家也被称为订阅者，它指向观察对象。观察者（Publisher）事件发生时通知用户 </li>
+<li>关于它的具体用法请移步 <a href="http://www.css88.com/jqapi-1.9/jQuery.Callbacks/" target="_blank" rel="external">jQuery3.0中文文档API</a></li>
+</ul>
+<h2 id="源码如下："><a href="#源码如下：" class="headerlink" title="源码如下："></a>源码如下：</h2><p>对重要部分做了注释，不对的地方请指出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div></pre></td><td class="code"><pre><div class="line">jQuery.Callbacks = function( options ) &#123;</div><div class="line"></div><div class="line">	// Convert options from String-formatted to Object-formatted if needed</div><div class="line">	// (we check in cache first)</div><div class="line">	options = typeof options === &quot;string&quot; ?</div><div class="line">		createOptions( options ) :</div><div class="line">		jQuery.extend( &#123;&#125;, options );</div><div class="line"></div><div class="line">	var // Flag to know if list is currently firing</div><div class="line">		firing,</div><div class="line"></div><div class="line">		// Last fire value for non-forgettable lists</div><div class="line">		memory,</div><div class="line"></div><div class="line">		// Flag to know if list was already fired </div><div class="line">		fired,</div><div class="line"></div><div class="line">		// Flag to prevent firing 正在执行回调是，不触发执行</div><div class="line">		locked,</div><div class="line"></div><div class="line">		// Actual callback list   回调列表</div><div class="line">		list = [],</div><div class="line"></div><div class="line">		// Queue of execution data for repeatable lists  存储上下文和参数  ？具体可能还有其他用处待发现在补充</div><div class="line">		queue = [],</div><div class="line"></div><div class="line">		// Index of currently firing callback (modified by add/remove as needed)</div><div class="line">		firingIndex = -1,</div><div class="line"></div><div class="line">		// Fire callbacks</div><div class="line">		fire = function() &#123;</div><div class="line"></div><div class="line">			// Enforce single-firing</div><div class="line">			locked = options.once;</div><div class="line"></div><div class="line">			// Execute callbacks for all pending executions,</div><div class="line">			// respecting firingIndex overrides and runtime changes</div><div class="line">			fired = firing = true;</div><div class="line">			for ( ; queue.length; firingIndex = -1 ) &#123;</div><div class="line">				memory = queue.shift();  //上下文和参数</div><div class="line">				while ( ++firingIndex &lt; list.length ) &#123;</div><div class="line"></div><div class="line">					// Run callback and check for early termination 执行回调并且检查是否提前结束 stopOnFalse</div><div class="line">					if ( list[ firingIndex ].apply( memory[ 0 ], memory[ 1 ] ) === false &amp;&amp;</div><div class="line">						options.stopOnFalse ) &#123;</div><div class="line"></div><div class="line">						// Jump to end and forget the data so .add doesn&apos;t re-fire</div><div class="line">						firingIndex = list.length;</div><div class="line">						memory = false;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			// Forget the data if we&apos;re done with it</div><div class="line">			if ( !options.memory ) &#123;</div><div class="line">				memory = false;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			firing = false;</div><div class="line"></div><div class="line">			// Clean up if we&apos;re done firing for good</div><div class="line">			if ( locked ) &#123;</div><div class="line"></div><div class="line">				// Keep an empty list if we have data for future add calls</div><div class="line">				if ( memory ) &#123;</div><div class="line">					list = [];</div><div class="line"></div><div class="line">				// Otherwise, this object is spent</div><div class="line">				&#125; else &#123;</div><div class="line">					list = &quot;&quot;;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;,</div><div class="line"></div><div class="line">		// Actual Callbacks object  实际的Callbacks对象包含各种方法add、fire、remove等</div><div class="line">		self = &#123;</div><div class="line"></div><div class="line">			// Add a callback or a collection of callbacks to the list</div><div class="line">			add: function() &#123;</div><div class="line">				if ( list ) &#123;</div><div class="line"></div><div class="line">					// If we have memory from a past run, we should fire after adding</div><div class="line">					if ( memory &amp;&amp; !firing ) &#123;</div><div class="line">						firingIndex = list.length - 1;</div><div class="line">						queue.push( memory );</div><div class="line">					&#125;</div><div class="line">                    //闭包自执行函数 参数为add的回调列表</div><div class="line">					( function add( args ) &#123;</div><div class="line">						jQuery.each( args, function( _, arg ) &#123;</div><div class="line">							if ( jQuery.isFunction( arg ) ) &#123;</div><div class="line">								if ( !options.unique || !self.has( arg ) ) &#123;   //不含有相同的就添加到列表中</div><div class="line">									list.push( arg );</div><div class="line">								&#125;</div><div class="line">							&#125; else if ( arg &amp;&amp; arg.length &amp;&amp; jQuery.type( arg ) !== &quot;string&quot; ) &#123;</div><div class="line"></div><div class="line">								// Inspect recursively</div><div class="line">								add( arg );</div><div class="line">							&#125;</div><div class="line">						&#125; );</div><div class="line">					&#125; )( arguments );  //add（）的参数</div><div class="line"></div><div class="line">					if ( memory &amp;&amp; !firing ) &#123;    //如果 memory 并当前无正在执行的回调，添加后则执行回调</div><div class="line">						fire();</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">				return this;</div><div class="line">			&#125;,</div><div class="line"></div><div class="line">			// Remove a callback from the list</div><div class="line">			remove: function() &#123;</div><div class="line">				jQuery.each( arguments, function( _, arg ) &#123;</div><div class="line">					var index;</div><div class="line">					while ( ( index = jQuery.inArray( arg, list, index ) ) &gt; -1 ) &#123;</div><div class="line">						list.splice( index, 1 );</div><div class="line"></div><div class="line">						// Handle firing indexes</div><div class="line">						if ( index &lt;= firingIndex ) &#123;</div><div class="line">							firingIndex--;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125; );</div><div class="line">				return this;</div><div class="line">			&#125;,</div><div class="line"></div><div class="line">			// Check if a given callback is in the list.</div><div class="line">			// If no argument is given, return whether or not list has callbacks attached.</div><div class="line">			has: function( fn ) &#123;</div><div class="line">				return fn ?</div><div class="line">					jQuery.inArray( fn, list ) &gt; -1 :</div><div class="line">					list.length &gt; 0;</div><div class="line">			&#125;,</div><div class="line"></div><div class="line">			// Remove all callbacks from the list</div><div class="line">			empty: function() &#123;</div><div class="line">				if ( list ) &#123;</div><div class="line">					list = [];</div><div class="line">				&#125;</div><div class="line">				return this;</div><div class="line">			&#125;,</div><div class="line"></div><div class="line">			// Disable .fire and .add</div><div class="line">			// Abort any current/pending executions</div><div class="line">			// Clear all callbacks and values</div><div class="line">			disable: function() &#123;</div><div class="line">				locked = queue = [];</div><div class="line">				list = memory = &quot;&quot;;</div><div class="line">				return this;</div><div class="line">			&#125;,</div><div class="line">			disabled: function() &#123;</div><div class="line">				return !list;</div><div class="line">			&#125;,</div><div class="line"></div><div class="line">			// Disable .fire</div><div class="line">			// Also disable .add unless we have memory (since it would have no effect)</div><div class="line">			// Abort any pending executions</div><div class="line">			lock: function() &#123;</div><div class="line">				locked = queue = [];</div><div class="line">				if ( !memory &amp;&amp; !firing ) &#123;</div><div class="line">					list = memory = &quot;&quot;;</div><div class="line">				&#125;</div><div class="line">				return this;</div><div class="line">			&#125;,</div><div class="line">			locked: function() &#123;</div><div class="line">				return !!locked;</div><div class="line">			&#125;,</div><div class="line"></div><div class="line">			// Call all callbacks with the given context and arguments 执行回调用给定的上下文和参数</div><div class="line">			fireWith: function( context, args ) &#123;</div><div class="line">				if ( !locked ) &#123;</div><div class="line">					args = args || [];</div><div class="line">					args = [ context, args.slice ? args.slice() : args ];</div><div class="line">					queue.push( args );</div><div class="line">					if ( !firing ) &#123;</div><div class="line">						fire();</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">				return this;</div><div class="line">			&#125;,</div><div class="line"></div><div class="line">			// Call all the callbacks with the given arguments  执行回调，调用fireWith函数 ，可以给回调列表传递参数</div><div class="line">			fire: function() &#123;</div><div class="line">				self.fireWith( this, arguments );   </div><div class="line">				return this;</div><div class="line">			&#125;,</div><div class="line"></div><div class="line">			// To know if the callbacks have already been called at least once</div><div class="line">			fired: function() &#123;</div><div class="line">				return !!fired;</div><div class="line">			&#125;</div><div class="line">		&#125;;</div><div class="line"></div><div class="line">	return self;   //返回创建的对象</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>Adhere to the original technology sharing, your support will encourage me to continue to create!</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.png" alt="seraph Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jQuery/" rel="tag">#jQuery</a>
+          
+            <a href="/tags/callback/" rel="tag">#callback</a>
+          
+            <a href="/tags/源码/" rel="tag">#源码</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/22/jQuery源码Cache/" rel="next" title="jQuery源码缓存">
+                <i class="fa fa-chevron-left"></i> jQuery源码缓存
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="seraph" />
+          <p class="site-author-name" itemprop="name">seraph</p>
+          <p class="site-description motion-element" itemprop="description">a jser are trying to climb pit</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kongzhexin" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Callbacks"><span class="nav-number">1.</span> <span class="nav-text">$.Callbacks()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码如下："><span class="nav-number">2.</span> <span class="nav-text">源码如下：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">seraph</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'seraphmoon';
+      var disqus_identifier = '2017/02/08/jQuery源码callback解析/';
+      var disqus_title = "jQuery源码callbacks解析";
+      var disqus_url = 'http://yoursite.com/2017/02/08/jQuery源码callback解析/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("thGDYbjXSOkvrigObTw0At1n-gzGzoHsz", "MefWkK13x4peTub153UEduQj");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
