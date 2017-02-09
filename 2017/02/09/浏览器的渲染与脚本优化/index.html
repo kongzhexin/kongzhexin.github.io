@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JavaScript," />
 
 
 
@@ -96,16 +96,28 @@
 
 
 
-<meta name="description" content="a jser are trying to climb pit">
-<meta property="og:type" content="website">
-<meta property="og:title" content="����">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="众所周知，耗时操作是布局 （又名回流），从DOM树 构建渲染树是非常耗费性能的，文末的参考链接才是干货，以下是我的学习笔记：  
+Rendering
+repaint：样式的改变，几何特性的改变
+reLayout/reflow： 渲染树节点的距离的重新计算或重新验证平常需要注意的地方：不要一个一个去改变，可通过类名、 cssText等一次改变
+Batch DOM changes and perfor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器的渲染与脚本优化">
+<meta property="og:url" content="http://yoursite.com/2017/02/09/浏览器的渲染与脚本优化/index.html">
 <meta property="og:site_name" content="seraph">
-<meta property="og:description" content="a jser are trying to climb pit">
-<meta property="og:updated_time" content="2017-01-22T02:02:15.144Z">
+<meta property="og:description" content="众所周知，耗时操作是布局 （又名回流），从DOM树 构建渲染树是非常耗费性能的，文末的参考链接才是干货，以下是我的学习笔记：  
+Rendering
+repaint：样式的改变，几何特性的改变
+reLayout/reflow： 渲染树节点的距离的重新计算或重新验证平常需要注意的地方：不要一个一个去改变，可通过类名、 cssText等一次改变
+Batch DOM changes and perfor">
+<meta property="og:updated_time" content="2017-02-09T00:55:27.250Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="����">
-<meta name="twitter:description" content="a jser are trying to climb pit">
+<meta name="twitter:title" content="浏览器的渲染与脚本优化">
+<meta name="twitter:description" content="众所周知，耗时操作是布局 （又名回流），从DOM树 构建渲染树是非常耗费性能的，文末的参考链接才是干货，以下是我的学习笔记：  
+Rendering
+repaint：样式的改变，几何特性的改变
+reLayout/reflow： 渲染树节点的距离的重新计算或重新验证平常需要注意的地方：不要一个一个去改变，可通过类名、 cssText等一次改变
+Batch DOM changes and perfor">
 
 
 
@@ -126,16 +138,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/09/浏览器的渲染与脚本优化/"/>
 
 
-  <title>
-  
-
-  
-    分类 | seraph
-  
-</title>
+  <title> 浏览器的渲染与脚本优化 | seraph </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -156,7 +162,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -246,16 +252,190 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
     
-      <div class="category-all-page">
-        <div class="category-all-title">
-            暂无分类
-        </div>
-        <div class="category-all">
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                浏览器的渲染与脚本优化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-09T07:48:16+08:00" content="2017-02-09">
+              2017-02-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/09/浏览器的渲染与脚本优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/09/浏览器的渲染与脚本优化/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/02/09/浏览器的渲染与脚本优化/" class="leancloud_visitors" data-flag-title="浏览器的渲染与脚本优化">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
           
         </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>众所周知，耗时操作是布局 （又名回流），从DOM树 构建渲染树是非常耗费性能的，文末的参考链接才是干货，以下是我的学习笔记：  </p>
+<h2 id="Rendering"><a href="#Rendering" class="headerlink" title="Rendering"></a>Rendering</h2><ol>
+<li>repaint：样式的改变，几何特性的改变</li>
+<li>reLayout/reflow： 渲染树节点的距离的重新计算或重新验证<h2 id="平常需要注意的地方："><a href="#平常需要注意的地方：" class="headerlink" title="平常需要注意的地方："></a>平常需要注意的地方：</h2>不要一个一个去改变，可通过类名、 cssText等一次改变<blockquote>
+<p>Batch DOM changes and perform them “offline”. Offline means not in the live DOM tree. You can:</p>
+<ol>
+<li>use a documentFragment to hold temp changes,</li>
+<li>clone the node you’re about to update, work on the copy, then swap the original with the updated clone</li>
+<li>hide the element with display: none (1 reflow, repaint), add 100 changes, restore the display (another reflow, repaint).This way you trade 2 reflows for potentially a hundred</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<p>浏览器打开一个网页发生的事情：</p>
+<ol>
+<li>解析html构建Dom树，  每个标签在树上有一个节点</li>
+<li>解析css文件及style标签样式信息      解析不了的ignore</li>
+<li>构建渲染render树，它和Dom树不完全对应  隐藏元素不会显示  head and in it 都不会显示</li>
+<li>布局渲染树、添加位置和大小</li>
+<li>paint绘制渲染树 显示到屏幕上</li>
+</ol>
+<p>HTML在浏览器中会被转化为DOM树，DOM树的每一个节点都会转化为RenderObject, 多个RenderObject可能又会对应一个或多个RenderLayer 浏览器渲染的流程如下：</p>
+<ol>
+<li>获取 DOM 并将其分割为多个层(RenderLayer)</li>
+<li>将每个层栅格化，并独立的绘制进位图中</li>
+<li>将这些位图作为纹理上传至 GPU</li>
+<li>复合多个层来生成最终的屏幕图像(终极layer)</li>
+</ol>
+<h2 id="关于脚本："><a href="#关于脚本：" class="headerlink" title="关于脚本："></a>关于脚本：</h2><p>预解析  执行脚本时，另一线程解析剩下文档加载后续资源<br>样式表   因样式不改变dom树 不影响文档解析 ，但脚本可能请求样式 这就需要阻塞<br>defer  文档加载结束  只有IE支持<br>async 只能用于外部脚本 异步执行不会阻塞页面加载  比如alert（）</p>
+<h2 id="关于setTimeout-和setInterval"><a href="#关于setTimeout-和setInterval" class="headerlink" title="关于setTimeout()和setInterval()"></a>关于setTimeout()和setInterval()</h2><p>IE8及以下浏览器时间间隔为15.6ms，chrome和IE9以上 4ms ，除此之外也和当前电脑环境是否有电源有关系<br>同步函数总是优于异步函数<br>浏览器始终只有一个线程在工作 （可以这么理解，因为js引擎和UI 互斥），改变颜色时，脚本仍在执行无法调用UI线程<br>网络操作线程 2-6个<br>Web Worker: 使处理UI线程之外的脚本执行成为可能，可是JS脚本在后台线程运行而不影响UI线程，每一个Web Worker都是相互独立的都在自己的线程中运行。<br><strong>注意</strong>： Web Worker不能操作DOM 可用于处理与UI线程无关的长时间运行脚本</p>
+<p>参考：</p>
+<ul>
+<li><a href="http://zawa.iteye.com/blog/1270502" target="_blank" rel="external">http://zawa.iteye.com/blog/1270502</a></li>
+<li><a href="http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/" target="_blank" rel="external">http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/</a></li>
+<li><a href="http://gent.ilcore.com/2011/03/how-not-to-trigger-layout-in-webkit.html" target="_blank" rel="external">http://gent.ilcore.com/2011/03/how-not-to-trigger-layout-in-webkit.html</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>Adhere to the original technology sharing, your support will encourage me to continue to create!</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.png" alt="seraph Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/08/jQuery源码callback解析/" rel="next" title="jQuery源码callbacks解析">
+                <i class="fa fa-chevron-left"></i> jQuery源码callbacks解析
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/09/JavaScript权威指南DOM篇/" rel="prev" title="JavaScript权威指南DOM篇">
+                JavaScript权威指南DOM篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -294,8 +474,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -349,6 +538,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Rendering"><span class="nav-number">1.</span> <span class="nav-text">Rendering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平常需要注意的地方："><span class="nav-number">2.</span> <span class="nav-text">平常需要注意的地方：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于脚本："><span class="nav-number">3.</span> <span class="nav-text">关于脚本：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于setTimeout-和setInterval"><span class="nav-number">4.</span> <span class="nav-text">关于setTimeout()和setInterval()</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -445,6 +645,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
@@ -461,9 +665,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'seraphmoon';
-      var disqus_identifier = 'categories/index.html';
-      var disqus_title = "����";
-      var disqus_url = 'http://yoursite.com/categories/index.html';
+      var disqus_identifier = '2017/02/09/浏览器的渲染与脚本优化/';
+      var disqus_title = "浏览器的渲染与脚本优化";
+      var disqus_url = 'http://yoursite.com/2017/02/09/浏览器的渲染与脚本优化/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

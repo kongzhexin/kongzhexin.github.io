@@ -261,6 +261,423 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/09/JavaScript权威指南正则篇/" itemprop="url">
+                  JavaScript权威指南正则篇
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-09T08:43:31+08:00" content="2017-02-09">
+              2017-02-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/09/JavaScript权威指南正则篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/09/JavaScript权威指南正则篇/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/02/09/JavaScript权威指南正则篇/" class="leancloud_visitors" data-flag-title="JavaScript权威指南正则篇">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="两种方式"><a href="#两种方式" class="headerlink" title="两种方式"></a>两种方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var pattern =new RegExp(&quot;s$&quot;)</div><div class="line">var pattern =/^\s$/g</div></pre></td></tr></table></figure>
+<h3 id="常用匹配"><a href="#常用匹配" class="headerlink" title="常用匹配"></a>常用匹配</h3><p>[…] 方括号内的任意字符<br>[^…] 不在方括号内的任意字符    ^不在方括号是开始<br>. 除换行符和其他Unicode行终止符之外的任意字符<br>\w   ASCII字符 [a-zA-Z0-9]<br>\W   非ASCII字符 [^a-zA-Z0-9]<br>\s  任何空白字符<br>\S  任何非Unicode空白字符(制表符等一系列)  与 \w不同<br>\d  任何ASCII数字，等价于[0-9]<br>\D  [^0-9]<br>\b  边界   注意：[\b]匹配退格符<br>\B  非边界<br>{n,m}   n-m次，不填为无穷<br> +1次或多次<br>？ 0或1次<br>*0次或多次</p>
+<h3 id="非贪婪重复"><a href="#非贪婪重复" class="headerlink" title="非贪婪重复"></a>非贪婪重复</h3><p>可在匹配后加一个问号<br>aaa   /a+？/     只会匹配 a<br>但是aaab  /a+?b/    会匹配整个和预想不一样 ， 不会考虑子串</p>
+<h3 id="选择、分组和引用"><a href="#选择、分组和引用" class="headerlink" title="选择、分组和引用"></a>选择、分组和引用</h3><p>匹配从左到右，左边匹配便会忽视右边的匹配<br>ab  /a|ab/     只会匹配到a<br>\1  引用第一个带圆括号的子表达式，参与计数的是左括号<br>/([‘“])[^’”]*\1/<br>(?:) 不记忆与该组相匹配的字符，不参与索引编码</p>
+<h3 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h3><p>(?= )  括号内必须匹配<br>(?!  )  接下来的字符都不必匹配<br>/Java(?!Script)([A-Z]\w*)/</p>
+<h3 id="String方法"><a href="#String方法" class="headerlink" title="String方法"></a>String方法</h3><p>str.search(/cript/i)  不支持全局检索<br>str.replace()  第二个参数可以是函数动态计算替换字符串<br>str.match()  返回一个匹配数组  如果无g 则只检索第一个<br>数组的第一个元素就是匹配的字符串，余下元素则是正则表达式中用括号括起来的子表达式</p>
+<h3 id="解析一个URL"><a href="#解析一个URL" class="headerlink" title="解析一个URL"></a>解析一个URL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function parseUrl(url) &#123;    </div><div class="line">    //url   http://www.example.com/david   </div><div class="line">     var result =url.match(/(\w+):\/\/([\w.]+)\/(\S*)/);    </div><div class="line">     if(result != null)&#123;        </div><div class="line">        var fullUrl = result[0]; //  http://www.example.com/david       </div><div class="line">        var protocol = result[1]; // http        </div><div class="line">        var host = result[2]; //www.example.com        </div><div class="line">        var path = result[3]  //david    </div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="RegExp对象"><a href="#RegExp对象" class="headerlink" title="RegExp对象"></a>RegExp对象</h3><ul>
+<li><p>new RegExp(“\d{5}”,”g”)</p>
+</li>
+<li><p><strong>属性</strong></p>
+<ul>
+<li>source   正则表达式文本</li>
+<li>lastIndex   下一次检索开始的位置</li>
+</ul>
+</li>
+<li><p><strong>exec()与test()</strong></p>
+<ul>
+<li>pattern.exec(str)   忽略g返回与match()一样结果，没有返回null ，有则返回数组<br>返回结果属性index为匹配开始位置，第二次调用从lastIndex开始匹配</li>
+<li>pattern.test(str)  返回true or false</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/09/JavaScript权威指南DOM篇/" itemprop="url">
+                  JavaScript权威指南DOM篇
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-09T07:52:03+08:00" content="2017-02-09">
+              2017-02-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/09/JavaScript权威指南DOM篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/09/JavaScript权威指南DOM篇/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/02/09/JavaScript权威指南DOM篇/" class="leancloud_visitors" data-flag-title="JavaScript权威指南DOM篇">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>获取元素的方法常用API</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">getElementById</div><div class="line">getElementsByName</div><div class="line">getElementsByTagName</div><div class="line">getElementsByClassName</div><div class="line">querySelectorAll    //通过css选择器</div></pre></td></tr></table></figure>
+</li>
+<li><p>getElementById与querySelectorAll<strong>区别</strong><br>getElementById等是实时的<br>querySelectorAll是静态的NodeList集合，IE8以上支持</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">x = document.querySelectorAll(&apos;img&apos;)</div><div class="line">y = document.getElementsByTagName(&apos;img&apos;)</div><div class="line">document.body.appendChild(new Image())</div><div class="line">x.length // 0</div><div class="line">y.length // 1</div></pre></td></tr></table></figure>
+</li>
+<li><p>Node的重要属性，注意：<strong>文本也是Node</strong><br>parentNode 、childNodes 、firstChild、lastChild、nextSibling、previoursSibling<br>上面的很容易理解，不多解释<br>nodeType<br>1 代表Element节点 3代表Text节点  8代表Comment节点 9代表Document  11 代表DocumentFragment节点<br>nodeValue<br>Text或Comment节点内容<br>nodeName<br>元素的大写标签名</p>
+</li>
+<li><p>属性<br>getAttribute()不返回数值、布尔值或对象<br>setAttribute(“class”,”test”)设置属性<br>removeAttribute()<br>hasAttribute()<br>attributes 属性集合,实时的</p>
+</li>
+<li>创建、插入和删除节点<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">document.createElement(&quot;script&quot;)</div><div class="line">document.createTextNode(&quot;&quot;)</div><div class="line">document.createDocumentFragment()   //性能考虑容器</div><div class="line">function reverse(n)&#123;</div><div class="line">     var f=document.createDocumentFragment();</div><div class="line">     while(n.lastChild)&#123;</div><div class="line">          f.appendChild(n.lastChild)   </div><div class="line">     &#125;</div><div class="line">     n.appendChild(f);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>父.appendChild(子)   //子已有则是剪切粘贴<br>父.insertBefore(新节点，已有节点 )   //根据语义，参数顺序新的在旧的之前</p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>父.removeChild()<br>父.replaceChild(新节点，已有节点)   //新的替代旧的</p>
+<ol>
+<li>文档坐标和视口坐标<h3 id="scrollLeft和scrollTop获取已经滚动的距离"><a href="#scrollLeft和scrollTop获取已经滚动的距离" class="headerlink" title="scrollLeft和scrollTop获取已经滚动的距离"></a>scrollLeft和scrollTop获取已经滚动的距离</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function getScrollOffsets(w)&#123;</div><div class="line">     w =w ||window;</div><div class="line">     if(w.pageXOffset !=null)&#123;</div><div class="line">        return &#123;x:w.pageXOffset ,y:pageYOffset  &#125;  </div><div class="line">     &#125;</div><div class="line">     var d=w.document;</div><div class="line">     if(document.compatMode ==&quot;CSS1Compat&quot;)&#123;</div><div class="line">     return &#123;x:document.documentElement.scrollLeft ,y:document.documentElement.scrollTop &#125;</div><div class="line">     &#125;</div><div class="line">     else&#123;</div><div class="line">     return &#123;x:document.body.scrollLeft ,y:document.body.scrollTop &#125;</div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="获取视口的尺寸"><a href="#获取视口的尺寸" class="headerlink" title="获取视口的尺寸"></a>获取视口的尺寸</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function getViewportSize(w) &#123;    </div><div class="line">    w =w||window;   </div><div class="line">    if(w.innerHeight !=null)&#123;         </div><div class="line">        return &#123;x:w.innerWidth,y:w.innerHeight&#125;;    </div><div class="line">    &#125;    </div><div class="line">    if(document.compatMode == &quot;CSS1Compat&quot;)&#123;       </div><div class="line">        return &#123;</div><div class="line">               x:document.documentElement.clientWidth,            </div><div class="line">               y:document.documentElement.clientHeight</div><div class="line">            &#125;  </div><div class="line">     &#125;else&#123;    </div><div class="line">         return &#123;            </div><div class="line">                x:document.body.clientWidth,      </div><div class="line">                y:document.body.clientHeight      </div><div class="line">            &#125;    </div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="获取元素的尺寸"><a href="#获取元素的尺寸" class="headerlink" title="获取元素的尺寸"></a>获取元素的尺寸</h3><p>getBoundingClientRect()返回元素的left top right bottom，<strong>兼容性很棒</strong><br>除了IE之外，其他浏览器会有width、height值<br><strong>视口坐标+滚动条位置 =文档坐标</strong></p>
+<ol>
+<li><p>滚动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">window.scrollTo() window.scrollTop()</div><div class="line">window.scrollBy(0,10) 坐标是相对的</div><div class="line">offsetHeight offsetWidth返回width+padding+border</div><div class="line">offsetLeft offsetTop 相对于定位父元素的</div><div class="line">offsetParent  父元素</div><div class="line">clientWidth  clientHeight   //返回width+padding</div><div class="line">clientLeft 、clientTop   // 左、上边框的宽度</div></pre></td></tr></table></figure>
+</li>
+<li><p>其他</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">window.getSelection().toString()  </div><div class="line">document.selection.createRange().text</div><div class="line">contenteditable</div><div class="line">visibility  hidden/visible   文档中仍保留其位置</div><div class="line">display   none</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>隐藏和显示定位元素时，首选visibility</strong><br>e.style.left = “300px”  定位属性<strong>必须为字符串有单位</strong><br>document.styleSheets 表示与文档关联的样式表<br>数组元素为CSSStyleSheet对象，元素为 一个cssRules[]数组，元素为样式规则<br>var firstRule = document.styleSheets[0].CSSStyleSheet[0]<br>insertRule  deleteRule   IE下 addRule  removeRule<br> document.createStyleSheet   //添加样式</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/09/浏览器的渲染与脚本优化/" itemprop="url">
+                  浏览器的渲染与脚本优化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-09T07:48:16+08:00" content="2017-02-09">
+              2017-02-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/09/浏览器的渲染与脚本优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/09/浏览器的渲染与脚本优化/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/02/09/浏览器的渲染与脚本优化/" class="leancloud_visitors" data-flag-title="浏览器的渲染与脚本优化">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>众所周知，耗时操作是布局 （又名回流），从DOM树 构建渲染树是非常耗费性能的，文末的参考链接才是干货，以下是我的学习笔记：  </p>
+<h2 id="Rendering"><a href="#Rendering" class="headerlink" title="Rendering"></a>Rendering</h2><ol>
+<li>repaint：样式的改变，几何特性的改变</li>
+<li>reLayout/reflow： 渲染树节点的距离的重新计算或重新验证<h2 id="平常需要注意的地方："><a href="#平常需要注意的地方：" class="headerlink" title="平常需要注意的地方："></a>平常需要注意的地方：</h2>不要一个一个去改变，可通过类名、 cssText等一次改变<blockquote>
+<p>Batch DOM changes and perform them “offline”. Offline means not in the live DOM tree. You can:</p>
+<ol>
+<li>use a documentFragment to hold temp changes,</li>
+<li>clone the node you’re about to update, work on the copy, then swap the original with the updated clone</li>
+<li>hide the element with display: none (1 reflow, repaint), add 100 changes, restore the display (another reflow, repaint).This way you trade 2 reflows for potentially a hundred</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<p>浏览器打开一个网页发生的事情：</p>
+<ol>
+<li>解析html构建Dom树，  每个标签在树上有一个节点</li>
+<li>解析css文件及style标签样式信息      解析不了的ignore</li>
+<li>构建渲染render树，它和Dom树不完全对应  隐藏元素不会显示  head and in it 都不会显示</li>
+<li>布局渲染树、添加位置和大小</li>
+<li>paint绘制渲染树 显示到屏幕上</li>
+</ol>
+<p>HTML在浏览器中会被转化为DOM树，DOM树的每一个节点都会转化为RenderObject, 多个RenderObject可能又会对应一个或多个RenderLayer 浏览器渲染的流程如下：</p>
+<ol>
+<li>获取 DOM 并将其分割为多个层(RenderLayer)</li>
+<li>将每个层栅格化，并独立的绘制进位图中</li>
+<li>将这些位图作为纹理上传至 GPU</li>
+<li>复合多个层来生成最终的屏幕图像(终极layer)</li>
+</ol>
+<h2 id="关于脚本："><a href="#关于脚本：" class="headerlink" title="关于脚本："></a>关于脚本：</h2><p>预解析  执行脚本时，另一线程解析剩下文档加载后续资源<br>样式表   因样式不改变dom树 不影响文档解析 ，但脚本可能请求样式 这就需要阻塞<br>defer  文档加载结束  只有IE支持<br>async 只能用于外部脚本 异步执行不会阻塞页面加载  比如alert（）</p>
+<h2 id="关于setTimeout-和setInterval"><a href="#关于setTimeout-和setInterval" class="headerlink" title="关于setTimeout()和setInterval()"></a>关于setTimeout()和setInterval()</h2><p>IE8及以下浏览器时间间隔为15.6ms，chrome和IE9以上 4ms ，除此之外也和当前电脑环境是否有电源有关系<br>同步函数总是优于异步函数<br>浏览器始终只有一个线程在工作 （可以这么理解，因为js引擎和UI 互斥），改变颜色时，脚本仍在执行无法调用UI线程<br>网络操作线程 2-6个<br>Web Worker: 使处理UI线程之外的脚本执行成为可能，可是JS脚本在后台线程运行而不影响UI线程，每一个Web Worker都是相互独立的都在自己的线程中运行。<br><strong>注意</strong>： Web Worker不能操作DOM 可用于处理与UI线程无关的长时间运行脚本</p>
+<p>参考：</p>
+<ul>
+<li><a href="http://zawa.iteye.com/blog/1270502" target="_blank" rel="external">http://zawa.iteye.com/blog/1270502</a></li>
+<li><a href="http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/" target="_blank" rel="external">http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/</a></li>
+<li><a href="http://gent.ilcore.com/2011/03/how-not-to-trigger-layout-in-webkit.html" target="_blank" rel="external">http://gent.ilcore.com/2011/03/how-not-to-trigger-layout-in-webkit.html</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/08/jQuery源码callback解析/" itemprop="url">
                   jQuery源码callbacks解析
                 </a>
@@ -1133,7 +1550,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1143,7 +1560,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
