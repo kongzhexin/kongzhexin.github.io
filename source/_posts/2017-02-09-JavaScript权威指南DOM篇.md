@@ -4,7 +4,7 @@ date: 2017-02-09 07:52:03
 tags: JavaScript
 ---
 
-1. 获取元素的方法常用API
+## 获取元素的方法常用API
 ```
 getElementById
 getElementsByName
@@ -12,7 +12,7 @@ getElementsByTagName
 getElementsByClassName
 querySelectorAll    //通过css选择器
 ```
-2. getElementById与querySelectorAll**区别**
+## getElementById与querySelectorAll**区别**
 getElementById等是实时的
 querySelectorAll是静态的NodeList集合，IE8以上支持
 ```
@@ -22,7 +22,7 @@ document.body.appendChild(new Image())
 x.length // 0
 y.length // 1
 ```
-3. Node的重要属性，注意：**文本也是Node**
+## Node的重要属性，注意：**文本也是Node**
 parentNode 、childNodes 、firstChild、lastChild、nextSibling、previoursSibling
 上面的很容易理解，不多解释
 nodeType
@@ -32,14 +32,15 @@ Text或Comment节点内容
 nodeName
 元素的大写标签名
 
-4. 属性
+## 属性
 getAttribute()不返回数值、布尔值或对象
 setAttribute("class","test")设置属性
 removeAttribute()
 hasAttribute()
 attributes 属性集合,实时的
-5. 创建、插入和删除节点
+## 创建、插入和删除节点
 ### 创建
+
 ```
 document.createElement("script")
 document.createTextNode("")
@@ -53,13 +54,15 @@ function reverse(n){
 }
 ```
 ### 插入
+
 父.appendChild(子)   //子已有则是剪切粘贴
 父.insertBefore(新节点，已有节点 )   //根据语义，参数顺序新的在旧的之前
 ### 删除
+
 父.removeChild()
 父.replaceChild(新节点，已有节点)   //新的替代旧的
 
-6. 文档坐标和视口坐标
+## 文档坐标和视口坐标
 ### scrollLeft和scrollTop获取已经滚动的距离
 ```
 function getScrollOffsets(w){
@@ -100,7 +103,7 @@ function getViewportSize(w) {   
 getBoundingClientRect()返回元素的left top right bottom，**兼容性很棒**
 除了IE之外，其他浏览器会有width、height值
 **视口坐标+滚动条位置 =文档坐标**
-7. 滚动
+## 滚动
 ```
 window.scrollTo() window.scrollTop()
 window.scrollBy(0,10) 坐标是相对的
@@ -110,7 +113,7 @@ offsetParent  父元素
 clientWidth  clientHeight   //返回width+padding
 clientLeft 、clientTop   // 左、上边框的宽度
 ```
-8. 其他
+## 其他
 ```
 window.getSelection().toString()  
 document.selection.createRange().text
