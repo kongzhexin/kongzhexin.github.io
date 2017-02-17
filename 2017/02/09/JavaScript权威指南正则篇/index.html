@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="seraph">
 <meta property="og:description" content="两种方式12var pattern =new RegExp(&amp;quot;s$&amp;quot;)var pattern =/^\s$/g
 常用匹配[…] 方括号内的任意字符[^…] 不在方括号内的任意字符    ^不在方括号是开始. 除换行符和其他Unicode行终止符之外的任意字符\w   ASCII字符 [a-zA-Z0-9]\W   非ASCII字符 [^a-zA-Z0-9]\s  任何空白字符\">
-<meta property="og:updated_time" content="2017-02-09T05:42:19.321Z">
+<meta property="og:updated_time" content="2017-02-17T08:59:33.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript权威指南正则篇">
 <meta name="twitter:description" content="两种方式12var pattern =new RegExp(&amp;quot;s$&amp;quot;)var pattern =/^\s$/g
@@ -322,7 +322,7 @@
 <h3 id="常用匹配"><a href="#常用匹配" class="headerlink" title="常用匹配"></a>常用匹配</h3><p>[…] 方括号内的任意字符<br>[^…] 不在方括号内的任意字符    ^不在方括号是开始<br>. 除换行符和其他Unicode行终止符之外的任意字符<br>\w   ASCII字符 [a-zA-Z0-9]<br>\W   非ASCII字符 [^a-zA-Z0-9]<br>\s  任何空白字符<br>\S  任何非Unicode空白字符(制表符等一系列)  与 \w不同<br>\d  任何ASCII数字，等价于[0-9]<br>\D  [^0-9]<br>\b  边界   注意：[\b]匹配退格符<br>\B  非边界<br>{n,m}   n-m次，不填为无穷<br> +1次或多次<br>？ 0或1次<br>*0次或多次</p>
 <h3 id="非贪婪重复"><a href="#非贪婪重复" class="headerlink" title="非贪婪重复"></a>非贪婪重复</h3><p>可在匹配后加一个问号<br>aaa   /a+？/     只会匹配 a<br>但是aaab  /a+?b/    会匹配整个和预想不一样 ， 不会考虑子串</p>
 <h3 id="选择、分组和引用"><a href="#选择、分组和引用" class="headerlink" title="选择、分组和引用"></a>选择、分组和引用</h3><p>匹配从左到右，左边匹配便会忽视右边的匹配<br>ab  /a|ab/     只会匹配到a<br>\1  引用第一个带圆括号的子表达式，参与计数的是左括号<br>/([‘“])[^’”]*\1/<br>(?:) 不记忆与该组相匹配的字符，不参与索引编码</p>
-<h3 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h3><p>(?= )  括号内必须匹配<br>(?!  )  接下来的字符都不必匹配<br>/Java(?!Script)([A-Z]\w*)/</p>
+<h3 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h3><p>(?= )  括号内必须匹配，才会匹配其他的<br>(?!  )  接下来的字符都不匹配，才会匹配其他的<br>/Java(?!Script)([A-Z]\w*)/</p>
 <h3 id="String方法"><a href="#String方法" class="headerlink" title="String方法"></a>String方法</h3><p>str.search(/cript/i)  不支持全局检索<br>str.replace()  第二个参数可以是函数动态计算替换字符串<br>str.match()  返回一个匹配数组  如果无g 则只检索第一个<br>数组的第一个元素就是匹配的字符串，余下元素则是正则表达式中用括号括起来的子表达式</p>
 <h3 id="解析一个URL"><a href="#解析一个URL" class="headerlink" title="解析一个URL"></a>解析一个URL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function parseUrl(url) &#123;    </div><div class="line">    //url   http://www.example.com/david   </div><div class="line">     var result =url.match(/(\w+):\/\/([\w.]+)\/(\S*)/);    </div><div class="line">     if(result != null)&#123;        </div><div class="line">        var fullUrl = result[0]; //  http://www.example.com/david       </div><div class="line">        var protocol = result[1]; // http        </div><div class="line">        var host = result[2]; //www.example.com        </div><div class="line">        var path = result[3]  //david    </div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="RegExp对象"><a href="#RegExp对象" class="headerlink" title="RegExp对象"></a>RegExp对象</h3><ul>
@@ -395,6 +395,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/10/jQuery源码Deferred/" rel="prev" title="jQuery源码Deferred">
+                jQuery源码Deferred <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -469,7 +473,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

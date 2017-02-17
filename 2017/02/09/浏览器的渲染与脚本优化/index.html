@@ -99,8 +99,11 @@
 <meta name="description" content="众所周知，耗时操作是布局 （又名回流），从DOM树 构建渲染树是非常耗费性能的，文末的参考链接才是干货，以下是我的学习笔记：  
 Rendering
 repaint：样式的改变，几何特性的改变
-reLayout/reflow： 渲染树节点的距离的重新计算或重新验证平常需要注意的地方：不要一个一个去改变，可通过类名、 cssText等一次改变
-Batch DOM changes and perfor">
+reLayout/reflow： 渲染树节点的距离的重新计算或重新验证
+
+平常需要注意的地方：不要一个一个去改变，可通过类名、 cssText等一次改变
+
+Batch DOM changes and per">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浏览器的渲染与脚本优化">
 <meta property="og:url" content="http://yoursite.com/2017/02/09/浏览器的渲染与脚本优化/index.html">
@@ -108,16 +111,22 @@ Batch DOM changes and perfor">
 <meta property="og:description" content="众所周知，耗时操作是布局 （又名回流），从DOM树 构建渲染树是非常耗费性能的，文末的参考链接才是干货，以下是我的学习笔记：  
 Rendering
 repaint：样式的改变，几何特性的改变
-reLayout/reflow： 渲染树节点的距离的重新计算或重新验证平常需要注意的地方：不要一个一个去改变，可通过类名、 cssText等一次改变
-Batch DOM changes and perfor">
-<meta property="og:updated_time" content="2017-02-09T00:55:27.250Z">
+reLayout/reflow： 渲染树节点的距离的重新计算或重新验证
+
+平常需要注意的地方：不要一个一个去改变，可通过类名、 cssText等一次改变
+
+Batch DOM changes and per">
+<meta property="og:updated_time" content="2017-02-17T09:16:29.834Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器的渲染与脚本优化">
 <meta name="twitter:description" content="众所周知，耗时操作是布局 （又名回流），从DOM树 构建渲染树是非常耗费性能的，文末的参考链接才是干货，以下是我的学习笔记：  
 Rendering
 repaint：样式的改变，几何特性的改变
-reLayout/reflow： 渲染树节点的距离的重新计算或重新验证平常需要注意的地方：不要一个一个去改变，可通过类名、 cssText等一次改变
-Batch DOM changes and perfor">
+reLayout/reflow： 渲染树节点的距离的重新计算或重新验证
+
+平常需要注意的地方：不要一个一个去改变，可通过类名、 cssText等一次改变
+
+Batch DOM changes and per">
 
 
 
@@ -330,7 +339,10 @@ Batch DOM changes and perfor">
         <p>众所周知，耗时操作是布局 （又名回流），从DOM树 构建渲染树是非常耗费性能的，文末的参考链接才是干货，以下是我的学习笔记：  </p>
 <h2 id="Rendering"><a href="#Rendering" class="headerlink" title="Rendering"></a>Rendering</h2><ol>
 <li>repaint：样式的改变，几何特性的改变</li>
-<li>reLayout/reflow： 渲染树节点的距离的重新计算或重新验证<h2 id="平常需要注意的地方："><a href="#平常需要注意的地方：" class="headerlink" title="平常需要注意的地方："></a>平常需要注意的地方：</h2>不要一个一个去改变，可通过类名、 cssText等一次改变<blockquote>
+<li>reLayout/reflow： 渲染树节点的距离的重新计算或重新验证</li>
+</ol>
+<h2 id="平常需要注意的地方："><a href="#平常需要注意的地方：" class="headerlink" title="平常需要注意的地方："></a>平常需要注意的地方：</h2><p>不要一个一个去改变，可通过类名、 cssText等一次改变</p>
+<blockquote>
 <p>Batch DOM changes and perform them “offline”. Offline means not in the live DOM tree. You can:</p>
 <ol>
 <li>use a documentFragment to hold temp changes,</li>
@@ -338,8 +350,6 @@ Batch DOM changes and perfor">
 <li>hide the element with display: none (1 reflow, repaint), add 100 changes, restore the display (another reflow, repaint).This way you trade 2 reflows for potentially a hundred</li>
 </ol>
 </blockquote>
-</li>
-</ol>
 <p>浏览器打开一个网页发生的事情：</p>
 <ol>
 <li>解析html构建Dom树，  每个标签在树上有一个节点</li>
@@ -495,7 +505,7 @@ Batch DOM changes and perfor">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
